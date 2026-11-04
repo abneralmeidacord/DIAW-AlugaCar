@@ -1,0 +1,36 @@
+.confirmation-car {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 17px;
+}
+
+.confirmation-car > .car-image {
+  width: 130px;
+  height: 90px;
+}
+
+.confirmation-car strong {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.confirmation-car p {
+  font-size: 11px;
+  color: #536045;
+  margin-top: 12px;
+}
+
+@media (max-width: 540px) {
+  .confirmation-car {
+    gap: 12px;
+    padding: 13px;
+  }
+
+  .confirmation-car > .car-image {
+    width: 100px;
+    height: 90px;
+  }
+}

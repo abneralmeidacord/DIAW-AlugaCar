@@ -1,0 +1,5 @@
+node_modules/
+dist/
+AlugaCar_Prototipo.html
+*.log
+.openai/local/

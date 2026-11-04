@@ -1,0 +1,47 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.field > span:first-child {
+  font-size: 11px;
+  font-weight: 550;
+  color: #4f5e47;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #dce2d5;
+  border-radius: 9px;
+  min-height: 46px;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #354730;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #575c53;
+}
+
+.field input[readonly] {
+  background: #f3f5ee;
+  color: #565d4f;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.field small {
+  font-size: 10px;
+  color: #555c4e;
+  line-height: 1.6;
+}

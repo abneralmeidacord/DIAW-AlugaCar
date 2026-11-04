@@ -1,0 +1,45 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 18px;
+  background: #f2efe1;
+  color: #725928;
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+
+.badge > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge.aguardando_aceite {
+  color: #405c8f;
+  background: #e7eefb;
+}
+
+.badge.aprovado {
+  color: #4d613b;
+  background: #e8eddd;
+}
+
+.badge.alugado {
+  color: #235c49;
+  background: #deede3;
+}
+
+.badge.cancelado,
+.badge.finalizado {
+  color: #5a5d5a;
+  background: #ebede7;
+}
+
+.badge.reprovado {
+  color: #98433b;
+  background: #f6e8e2;
+}

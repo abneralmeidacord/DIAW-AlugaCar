@@ -1,0 +1,87 @@
+.demo-profiles {
+  display: grid;
+  gap: 13px;
+}
+
+.demo-profiles > button {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid #e0e5d8;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 17px;
+}
+
+.demo-profiles > button:hover {
+  background: #edf3e4;
+}
+
+.demo-profile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 51px;
+  height: 51px;
+  background: #e8efdf;
+  border-radius: 12px;
+  flex-shrink: 0;
+  color: #4a6238;
+}
+
+.demo-profiles > button > div {
+  flex: 1;
+}
+
+.demo-profiles h3 {
+  font-size: 17px;
+  font-weight: 550;
+  margin-bottom: 8px;
+}
+
+.demo-profiles p {
+  font-size: 11px;
+  color: #57614b;
+  line-height: 1.7;
+}
+
+.demo-profiles > button > svg {
+  width: 18px;
+  color: #4f6142;
+}
+
+.modal-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 10px;
+  color: #535e47;
+  line-height: 1.7;
+  margin-top: 23px;
+}
+
+.modal-tip > svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+@media (max-width: 540px) {
+  .demo-profiles > button {
+    padding: 17px 13px;
+    gap: 12px;
+  }
+
+  .demo-profile-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .demo-profiles h3 {
+    font-size: 15px;
+  }
+
+  .demo-profiles p {
+    font-size: 10px;
+  }
+}

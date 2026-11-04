@@ -1,0 +1,63 @@
+.income-links {
+  display: grid;
+  gap: 15px;
+  padding: 21px 0 24px;
+  font-size: 11px;
+}
+
+.income-links > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  line-height: 1.7;
+  color: #556247;
+}
+
+.income-links strong {
+  font-weight: 500;
+  color: #476531;
+}
+
+.credit-result {
+  padding: 25px 10px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 54px;
+  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #e4efda;
+  color: #4b6632;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.credit-result h3 {
+  font-size: 20px;
+  font-weight: 550;
+  margin-bottom: 17px;
+}
+
+.credit-result > strong {
+  font-size: 31px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  color: #47622f;
+}
+
+.credit-result p {
+  font-size: 11px;
+  color: #515e42;
+  line-height: 1.8;
+  margin-top: 15px;
+}
+
+.credit-result > small {
+  display: block;
+  font-size: 10px;
+  color: #57604b;
+  margin-top: 13px;
+}

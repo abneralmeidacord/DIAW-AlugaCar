@@ -1,0 +1,111 @@
+.contract-document {
+  background: #fff;
+  border: 1px solid #dfe5d5;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.contract-document-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid var(--line);
+}
+
+.contract-document-head .brand {
+  font-size: 22px;
+}
+
+.contract-document-head .brand-symbol {
+  display: none;
+}
+
+.contract-document h3 {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 25px 0 18px;
+}
+
+.contract-document dl {
+  margin: 0;
+  display: grid;
+  gap: 13px;
+}
+
+.contract-document dl > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.contract-document dt {
+  color: #546146;
+}
+
+.contract-document dd {
+  margin: 0;
+  text-align: right;
+  color: #4a6435;
+  max-width: 70%;
+}
+
+.contract-document h4 {
+  font-size: 12px;
+  font-weight: 550;
+  margin: 25px 0 10px;
+}
+
+.contract-document > p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #536144;
+}
+
+.contract-document > .contract-accepted {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: #44642e;
+  border-top: 1px solid var(--line);
+  padding-top: 17px;
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+.contract-checkbox {
+  margin: 23px 0 20px;
+  color: #525e41;
+  font-size: 11px;
+}
+
+@media (max-width: 540px) {
+  .contract-document {
+    padding: 20px 17px;
+  }
+
+  .contract-document-head {
+    gap: 10px;
+  }
+
+  .contract-document-head .badge {
+    font-size: 8px;
+    padding: 6px 8px;
+  }
+
+  .contract-document h3 {
+    font-size: 18px;
+  }
+
+  .contract-document dl > div {
+    font-size: 10px;
+  }
+
+  .contract-document dd {
+    max-width: 65%;
+  }
+}

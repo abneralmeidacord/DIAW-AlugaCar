@@ -1,0 +1,297 @@
+.auth-layout {
+  max-width: 1270px;
+  margin: 12px auto 60px;
+  display: grid;
+  grid-template-columns: 0.95fr 1fr;
+  min-height: 630px;
+  gap: 20px;
+  padding: 0 28px;
+}
+
+.auth-visual {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e6eedf;
+  min-height: 630px;
+  display: flex;
+  align-items: flex-start;
+  padding: 55px 40px;
+}
+
+.auth-visual > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62%;
+  z-index: -2;
+  opacity: 0.12;
+}
+
+.auth-visual-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #eef4e8ed, #e2ecdbe8);
+  z-index: -1;
+}
+
+.auth-visual h2 {
+  font-size: 46px;
+  letter-spacing: -2px;
+  line-height: 1.2;
+  color: var(--green);
+  margin: 32px 0 23px;
+}
+
+.auth-visual h2 > em {
+  font-style: normal;
+  color: #575f52;
+}
+
+.auth-visual > div > p:last-child {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #575e54;
+}
+
+.auth-visual-caption {
+  position: absolute;
+  bottom: 35px;
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  color: #5a5e55;
+}
+
+.auth-form-area {
+  padding: 47px 38px 25px 50px;
+  align-self: center;
+}
+
+.auth-form-area > h1 {
+  font-size: 34px;
+  letter-spacing: -1.3px;
+}
+
+.auth-form-area > p:not(.eyebrow):not(.auth-switch) {
+  font-size: 12px;
+  color: #575e50;
+  line-height: 1.8;
+  margin-top: 13px;
+}
+
+.role-tabs {
+  display: flex;
+  border: 1px solid var(--line);
+  padding: 5px;
+  border-radius: 11px;
+  margin: 27px 0 25px;
+  background: #eff2e9;
+  gap: 5px;
+}
+
+.role-tabs button {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 11px;
+  border-radius: 7px;
+  padding: 11px 5px;
+  color: #56614f;
+}
+
+.role-tabs button.active {
+  background: white;
+  color: #274d34;
+  box-shadow: 0 3px 9px #344b2410;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 11px;
+  margin-top: 23px;
+  color: #586150;
+}
+
+.auth-switch > button {
+  font-weight: 550;
+  color: var(--green);
+  padding: 3px;
+}
+
+.auth-demo-note {
+  display: flex;
+  gap: 9px;
+  padding-top: 21px;
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  color: #575e4e;
+}
+
+.auth-demo-note svg {
+  flex-shrink: 0;
+}
+
+.auth-demo-note p {
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+.signup .auth-form-area {
+  padding-top: 23px;
+  padding-bottom: 0;
+}
+
+.signup .auth-visual {
+  min-height: 770px;
+}
+
+.signup .stack-form {
+  gap: 15px;
+}
+
+.signup .role-tabs {
+  margin: 22px 0;
+}
+
+@media (max-width: 1000px) {
+  .auth-form-area {
+    padding: 35px 20px 20px 30px;
+  }
+
+  .auth-visual {
+    padding: 45px 30px;
+  }
+
+  .auth-visual h2 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 750px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    padding: 0 24px;
+  }
+
+  .auth-visual {
+    display: none;
+  }
+
+  .auth-form-area {
+    padding: 28px 5px;
+  }
+
+  .auth-form-area > h1 {
+    font-size: 33px;
+  }
+}
+
+@media (max-width: 450px) {
+  .auth-layout {
+    padding: 0 20px;
+  }
+
+  .auth-form-area {
+    padding: 25px 0;
+  }
+
+  .auth-form-area > h1 {
+    font-size: 29px;
+  }
+
+  .role-tabs button {
+    font-size: 10px;
+  }
+}
+.auth-form-area {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.auth-form-area > h1 {
+  color: #1d3228;
+  font-weight: 600;
+}
+
+.auth-form-area > p:not(.eyebrow):not(.auth-switch) {
+  font-size: 14px;
+  color: #53634f;
+}
+
+.auth-visual .hero-kicker {
+  color: #45643d;
+}
+
+.auth-visual .hero-kicker > span {
+  background: #45643d;
+}
+
+.auth-visual > div > p:last-child {
+  color: #435b3d;
+  font-size: 14px;
+}
+
+.auth-visual-caption {
+  color: #45643d;
+}
+
+.auth-form-area .field > span:first-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: #344b36;
+}
+
+.auth-form-area .field input {
+  font-size: 14px;
+  color: #263c2b;
+  border-color: #b1bca9;
+}
+
+.auth-form-area .field small {
+  font-size: 12px;
+  color: #53634f;
+}
+
+.auth-form-area .role-tabs button {
+  font-size: 13px;
+  color: #4f6248;
+}
+
+.auth-form-area .role-tabs button.active {
+  color: #173f36;
+  font-weight: 600;
+}
+
+.auth-form-area .btn {
+  font-size: 14px;
+}
+
+.auth-switch {
+  font-size: 13px;
+  color: #53634f;
+}
+
+.auth-switch > button {
+  color: #173f36;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-demo-note {
+  color: #53634f;
+}
+
+.auth-demo-note p {
+  font-size: 11px;
+}
+
+.auth-form-area .eyebrow {
+  color: #4e6348;
+}

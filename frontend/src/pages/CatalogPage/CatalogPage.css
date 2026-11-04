@@ -1,0 +1,264 @@
+.catalog-page {
+  padding-top: 42px;
+  padding-bottom: 15px;
+}
+
+.catalog-page .page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 43px;
+}
+
+.catalog-side-note {
+  display: grid;
+  gap: 10px;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.catalog-side-note > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.catalog-side-note small {
+  font-size: 10px;
+  color: #575d52;
+}
+
+.catalog-tools {
+  display: flex;
+  align-items: stretch;
+  gap: 13px;
+}
+
+.search-input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0 19px;
+  border-radius: 12px;
+  min-height: 57px;
+}
+
+.search-input > svg {
+  color: #555c4f;
+}
+
+.search-input input {
+  border: 0;
+  background: none;
+  flex: 1;
+  min-width: 0;
+  outline: 0;
+  padding: 14px 0;
+  font-size: 12px;
+}
+
+.select-filter {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 15px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 11px;
+}
+
+.select-filter > span {
+  color: #565c4f;
+}
+
+.select-filter select {
+  background: none;
+  border: 0;
+  max-width: 140px;
+  font-size: 12px;
+  color: #384b34;
+  padding: 9px 5px;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 12px;
+  padding: 0 21px;
+  font-size: 11px;
+}
+
+.filter-button.selected {
+  background: #e4eddb;
+  color: #355732;
+}
+
+.catalog-subtools {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-top: 27px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.category-tabs button {
+  font-size: 11px;
+  padding: 10px 19px;
+  border-radius: 25px;
+  color: #575c50;
+  border: 1px solid transparent;
+}
+
+.category-tabs button.active {
+  background: var(--green);
+  color: white;
+}
+
+.category-tabs button:not(.active):hover {
+  border-color: #cad4c0;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: #585e52;
+}
+
+.sort-control select {
+  background: transparent;
+  border: 0;
+  color: #4d6245;
+  font-size: 11px;
+  max-width: 120px;
+  padding: 6px;
+}
+
+.results-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0;
+  font-size: 10px;
+  color: #596053;
+  gap: 20px;
+}
+
+.results-label > span:last-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.catalog-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #596051;
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 34px;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .catalog-page {
+    padding-top: 30px;
+  }
+
+  .catalog-page .page-heading {
+    align-items: flex-start;
+  }
+
+  .catalog-side-note {
+    margin-top: 20px;
+  }
+
+  .catalog-tools {
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    flex-basis: 55%;
+  }
+
+  .catalog-subtools {
+    flex-wrap: wrap;
+  }
+
+  .results-label > span:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .catalog-side-note {
+    display: none;
+  }
+
+  .catalog-page .page-heading {
+    margin-bottom: 27px;
+  }
+
+  .catalog-tools {
+    gap: 10px;
+  }
+
+  .search-input {
+    flex-basis: 100%;
+    min-height: 51px;
+  }
+
+  .select-filter {
+    min-height: 46px;
+    flex: 1;
+  }
+
+  .filter-button {
+    min-height: 46px;
+    padding: 0 15px;
+  }
+
+  .catalog-subtools {
+    gap: 13px;
+    margin-top: 20px;
+    padding-bottom: 13px;
+  }
+
+  .category-tabs {
+    gap: 3px;
+  }
+
+  .category-tabs button {
+    font-size: 10px;
+    padding: 10px 14px;
+  }
+
+  .sort-control {
+    margin-left: auto;
+  }
+
+  .results-label {
+    margin: 20px 0;
+  }
+}

@@ -1,0 +1,237 @@
+.profile-page {
+  padding-top: 38px;
+  max-width: 1220px;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 33px;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-sidebar > button {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 16px 17px;
+  font-size: 12px;
+  color: #57614d;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.profile-sidebar > button > svg:last-child {
+  margin-left: auto;
+}
+
+.profile-sidebar > button.active {
+  color: #244c33;
+  background: #e7eede;
+}
+
+.profile-sidebar > div {
+  margin: 30px 17px 0;
+  color: #535e48;
+}
+
+.profile-sidebar > div > p {
+  font-size: 10px;
+  line-height: 1.9;
+  margin-top: 15px;
+}
+
+.profile-form {
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.form-section-heading {
+  padding-bottom: 21px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2px;
+}
+
+.form-section-heading h2 {
+  font-size: 20px;
+  letter-spacing: -0.6px;
+}
+
+.form-section-heading p {
+  font-size: 11px;
+  color: #575f4f;
+  line-height: 1.7;
+  margin-top: 9px;
+}
+
+.profile-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  margin-top: 7px;
+}
+
+.profile-form-footer > span {
+  font-size: 9px;
+  color: #545f4b;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.job-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 20px;
+}
+
+.job-number {
+  font-size: 11px;
+  color: #535d4b;
+  padding-right: 2px;
+}
+
+.job-row > .field {
+  flex: 1;
+}
+
+.job-row > .field:nth-of-type(2) {
+  max-width: 160px;
+}
+
+.job-row > .icon-button {
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+
+.add-job {
+  align-self: flex-start;
+  font-size: 11px;
+}
+
+.delete-zone {
+  margin-top: 32px;
+  padding: 25px 27px;
+  border: 1px solid #e4dbd2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  border-radius: 14px;
+  background: #faf8f2;
+}
+
+.delete-zone h3 {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.delete-zone p {
+  font-size: 10px;
+  color: #60594f;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+
+.delete-zone > .btn {
+  font-size: 10px;
+  flex-shrink: 0;
+  min-height: 42px;
+}
+
+@media (max-width: 1000px) {
+  .profile-layout {
+    grid-template-columns: 190px 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 750px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-sidebar {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .profile-sidebar > div {
+    display: none;
+  }
+
+  .profile-sidebar > button {
+    flex: 1;
+    font-size: 11px;
+    justify-content: center;
+    padding: 13px;
+  }
+
+  .profile-sidebar > button > svg:last-child {
+    display: none;
+  }
+
+  .profile-form {
+    padding: 23px;
+  }
+
+  .job-row {
+    flex-wrap: wrap;
+  }
+
+  .job-number {
+    display: none;
+  }
+
+  .job-row > .field {
+    min-width: 100px;
+  }
+
+  .delete-zone {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile-form-footer {
+    flex-wrap: wrap;
+  }
+
+  .profile-form-footer > .btn {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 450px) {
+  .profile-form {
+    padding: 20px;
+  }
+
+  .job-row > .field:nth-of-type(2) {
+    max-width: 120px;
+  }
+
+  .job-row > .icon-button {
+    width: 30px;
+    height: 35px;
+  }
+
+  .job-row {
+    gap: 8px;
+  }
+
+  .profile-form-footer > span {
+    display: none;
+  }
+}

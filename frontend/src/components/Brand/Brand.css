@@ -1,0 +1,41 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  font-family: Manrope, Arial, sans-serif;
+  color: var(--green);
+  font-size: 27px;
+  letter-spacing: -1.7px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.brand-symbol {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-light {
+  font-weight: 500;
+}
+
+.brand i {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  font-size: 10px;
+  vertical-align: top;
+  letter-spacing: 0;
+  margin: 7px 0 0 4px;
+}
+
+.brand.inverse {
+  color: #ecf1e9;
+}
+
+@media (max-width: 850px) {
+  .brand {
+    font-size: 24px;
+  }
+}

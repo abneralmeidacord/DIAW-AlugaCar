@@ -1,0 +1,41 @@
+.order-tabs {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 25px;
+  overflow: auto;
+}
+
+.order-tabs > button {
+  font-size: 11px;
+  color: #575f4c;
+  padding: 0 0 17px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.order-tabs > button.active {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.order-tabs > button > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #e7eddd;
+  width: 20px;
+  height: 20px;
+  font-size: 9px;
+  border-radius: 50%;
+}
+
+@media (max-width: 540px) {
+  .order-tabs {
+    gap: 22px;
+  }
+}

@@ -1,0 +1,43 @@
+.toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid #d9e2d3;
+  box-shadow: 0 10px 50px #14372b26;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-radius: 14px;
+  max-width: 600px;
+  width: calc(100% - 36px);
+  padding: 16px 18px;
+  font-size: 13px;
+  line-height: 1.55;
+  z-index: 100;
+}
+
+.toast > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6efdf;
+  border-radius: 50%;
+  width: 27px;
+  height: 27px;
+  flex-shrink: 0;
+}
+
+.toast > button {
+  display: flex;
+  margin-left: auto;
+  padding: 5px;
+  color: #545c54;
+}
+
+@media (max-width: 540px) {
+  .toast {
+    bottom: 15px;
+  }
+}

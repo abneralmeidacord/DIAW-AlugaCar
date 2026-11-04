@@ -1,0 +1,339 @@
+.order-detail-top {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-bottom: 25px;
+}
+
+.order-detail-image {
+  width: 235px;
+  height: 167px;
+  flex-shrink: 0;
+  padding: 15px;
+  border-radius: 13px;
+}
+
+.order-detail-top h3 {
+  font-size: 27px;
+  font-weight: 550;
+  letter-spacing: -1px;
+  margin: 11px 0;
+}
+
+.order-detail-top > div > p {
+  font-size: 11px;
+  color: #57614b;
+}
+
+.order-detail-period {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: #516043;
+  margin-top: 16px;
+}
+
+.order-detail-total {
+  display: block;
+  font-size: 21px;
+  color: #456630;
+  font-weight: 550;
+  margin-top: 12px;
+}
+
+.order-detail-total > small {
+  font-size: 10px;
+  font-weight: 400;
+  color: #555f49;
+}
+
+.rental-progress {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 0 29px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  gap: 5px;
+}
+
+.rental-progress > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+  min-width: 0;
+}
+
+.rental-progress > div:not(:last-child):after {
+  content: '';
+  position: absolute;
+  left: calc(50% + 22px);
+  right: calc(-50% + 22px);
+  height: 1px;
+  background: #e0e5d8;
+  top: 15px;
+}
+
+.rental-progress > div.done:not(:last-child):after {
+  background: #a9bd92;
+}
+
+.rental-progress span {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #575e4f;
+  background: #eef2e7;
+  font-size: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.rental-progress .done > span {
+  background: #3f6732;
+  color: #fff;
+}
+
+.rental-progress small {
+  font-size: 8px;
+  text-align: center;
+  line-height: 1.6;
+  color: #59614f;
+  padding: 0 4px;
+}
+
+.rental-progress .done > small {
+  color: #4e613c;
+}
+
+.order-detail-columns {
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  gap: 45px;
+  padding: 29px 0 5px;
+}
+
+.order-detail-columns h3 {
+  font-size: 17px;
+  font-weight: 550;
+  letter-spacing: -0.45px;
+  margin-bottom: 21px;
+}
+
+.timeline {
+  display: grid;
+  gap: 24px;
+}
+
+.timeline > div {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.timeline > div:not(:last-child):before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: -24px;
+  left: 4px;
+  width: 1px;
+  background: #d7e1cc;
+}
+
+.timeline > div > span {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  background: #adc497;
+  border: 2px solid #edf3e7;
+  border-radius: 50%;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #50623f;
+}
+
+.timeline small {
+  display: block;
+  font-size: 9px;
+  color: #58604f;
+  margin-top: 7px;
+}
+
+.order-next-step {
+  background: #edf2e3;
+  padding: 23px;
+  border-radius: 13px;
+}
+
+.order-next-step > .eyebrow {
+  font-size: 8px;
+  color: #515f43;
+  margin-bottom: 12px;
+}
+
+.order-next-step h3 {
+  font-size: 19px;
+  line-height: 1.4;
+  margin-bottom: 13px;
+}
+
+.order-next-step > p:not(.eyebrow) {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #535f44;
+}
+
+.order-next-step > .btn {
+  margin-top: 19px;
+  font-size: 11px;
+  gap: 10px;
+  padding: 14px;
+}
+
+.order-next-step > .btn + .btn {
+  margin-top: 10px;
+}
+
+.evaluation-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 10px;
+  color: #536343;
+  line-height: 1.7;
+  border-top: 1px solid #d6e1cb;
+  padding-top: 15px;
+  margin-top: 18px;
+}
+
+.evaluation-summary > svg {
+  flex-shrink: 0;
+}
+
+.request-client {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 23px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.request-client strong {
+  font-size: 12px;
+  font-weight: 550;
+}
+
+.request-client p {
+  font-size: 10px;
+  margin-top: 6px;
+  color: #566248;
+}
+
+.request-client small {
+  display: block;
+  font-size: 9px;
+  margin-top: 7px;
+  color: #555e4b;
+}
+
+.order-secondary-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 23px;
+  margin-top: 23px;
+}
+
+.order-secondary-actions > .text-link {
+  font-size: 10px;
+}
+
+@media (max-width: 800px) {
+  .order-detail-columns {
+    gap: 23px;
+  }
+
+  .order-detail-image {
+    width: 180px;
+  }
+
+  .order-detail-top h3 {
+    font-size: 23px;
+  }
+
+  .order-detail-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .order-detail-columns > section:first-child {
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 540px) {
+  .order-detail-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 19px;
+  }
+
+  .order-detail-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .order-detail-top > div:last-child {
+    padding: 0 4px;
+  }
+
+  .order-detail-top h3 {
+    font-size: 27px;
+  }
+
+  .rental-progress {
+    gap: 1px;
+    padding-bottom: 24px;
+  }
+
+  .rental-progress small {
+    font-size: 7px;
+    padding: 0 1px;
+  }
+
+  .rental-progress span {
+    width: 25px;
+    height: 25px;
+    font-size: 9px;
+  }
+
+  .rental-progress > div:not(:last-child):after {
+    top: 12px;
+    left: calc(50% + 17px);
+    right: calc(-50% + 17px);
+  }
+
+  .order-detail-columns {
+    padding-top: 24px;
+  }
+
+  .order-next-step {
+    padding: 21px;
+  }
+}
