@@ -32,6 +32,7 @@ export default function Footer({ user, navigate }) {
             {user ? 'Meu cadastro' : 'Criar uma conta'}
           </button>
           <button onClick={() => navigate('how-it-works')}>Como funciona</button>
+          <button onClick={() => navigate('join')}>Venha fazer parte</button>
         </div>
         <div className="footer-note">
           <a

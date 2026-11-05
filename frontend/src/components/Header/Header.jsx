@@ -49,11 +49,6 @@ export default function Header({ user, page, navigate, onDemo, logout }) {
           ))}
         </nav>
         <div className="header-actions">
-          {showDemo && (
-            <button className="demo-button" onClick={onDemo}>
-              <span /> Explorar demo
-            </button>
-          )}
           {user ? (
             <div className="account-menu">
               <button

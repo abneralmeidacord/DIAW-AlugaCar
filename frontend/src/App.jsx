@@ -12,6 +12,7 @@ import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import HowItWorksPage from './pages/HowItWorksPage/HowItWorksPage.jsx';
+import JoinPage from './pages/JoinPage/JoinPage.jsx';
 import CatalogPage from './pages/CatalogPage/CatalogPage.jsx';
 import OrdersPage from './pages/OrdersPage/OrdersPage.jsx';
 import WorkspacePage from './pages/WorkspacePage/WorkspacePage.jsx';
@@ -98,7 +99,7 @@ export default function App() {
 
   const notify = (message) => setToast(message);
   function navigate(target) {
-    if (!user && !['home', 'how-it-works', 'login', 'signup'].includes(target)) {
+    if (!user && !['home', 'how-it-works', 'join', 'login', 'signup'].includes(target)) {
       setReturnTo({ page: target });
       setPage('login');
       return;
@@ -305,6 +306,7 @@ export default function App() {
           />
         )}
         {page === 'how-it-works' && <HowItWorksPage navigate={navigate} />}
+        {page === 'join' && <JoinPage />}
         {page === 'catalog' && user && (
           <CatalogPage
             cars={cars}

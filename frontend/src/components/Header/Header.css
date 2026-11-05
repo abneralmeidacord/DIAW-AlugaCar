@@ -61,23 +61,6 @@
   padding: 8px;
 }
 
-.demo-button {
-  font-size: 9px;
-  color: #52644a;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  padding: 6px 0;
-}
-
-.demo-button > span {
-  background: #9bb382;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-}
-
 .avatar-button {
   display: flex;
   align-items: center;
@@ -149,10 +132,6 @@
 
   .header-actions {
     gap: 12px;
-  }
-
-  .demo-button {
-    display: none;
   }
 }
 
