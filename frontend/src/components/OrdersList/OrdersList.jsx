@@ -3,12 +3,12 @@ import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
 import Badge from '../Badge/Badge.jsx';
 import Empty from '../Empty/Empty.jsx';
-import { carOf } from '../../data/cars.js';
+import { carTone, carOf } from '../../data/cars.js';
 import { organizations, statusLabels } from '../../data/demo.js';
 import { money, dateLabel, daysBetween } from '../../data/format.js';
 import './OrdersList.css';
 
-export default function OrdersList({ orders, onOpen, onBrowse }) {
+export default function OrdersList({ cars, orders, onOpen, onBrowse }) {
   if (!orders.length)
     return (
       <Empty
@@ -22,10 +22,10 @@ export default function OrdersList({ orders, onOpen, onBrowse }) {
   return (
     <div className="orders-list">
       {orders.map((o) => {
-        const c = carOf(o.carId);
+        const c = carOf(o.carId, cars);
         return (
           <article className="order-card" key={o.id}>
-            <div className={`order-photo tone-${c.tone}`}>
+            <div className={`order-photo tone-${carTone(c.category)}`}>
               <CarImage car={c} />
             </div>
             <div className="order-card-main">
@@ -37,7 +37,7 @@ export default function OrdersList({ orders, onOpen, onBrowse }) {
                 {c.brand} {c.model}
               </h2>
               <p className="small-text">
-                {organizations[o.org] || 'Sua organização'} · Belo Horizonte
+                {o.orgName || organizations[o.org] || 'Sua organização'} · Belo Horizonte
               </p>
               <div className="order-summary">
                 <span>

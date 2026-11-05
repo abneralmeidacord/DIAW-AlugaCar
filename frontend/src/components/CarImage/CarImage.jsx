@@ -12,7 +12,7 @@ export default function CarImage({ car, className = '' }) {
   return (
     <img
       className={`car-image ${className}`}
-      src={car.photo}
+      src={car.photo || '/images/car-fallback.svg'}
       alt={`${car.brand} ${car.model}, imagem ilustrativa`}
       referrerPolicy="no-referrer"
       onError={showFallback}

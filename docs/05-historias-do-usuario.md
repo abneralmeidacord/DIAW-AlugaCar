@@ -27,7 +27,7 @@ Como cliente, quero consultar e atualizar meus dados, incluindo minha renda decl
 
 **Critérios de aceitação:**
 
-- Cadastro contém RG, CPF, nome, endereço e profissão; o enunciado permite até três vínculos empregatícios com respectivos rendimentos.
+- Cadastro contém CPF, nome, endereço e profissão, além de até três vínculos empregatícios com respectivos rendimentos.
 - Renda declarada pode ser editada após o cadastro.
 - Excluir é bloqueado enquanto houver contrato vigente ou aluguel ativo.
 - Tratamento da exclusão quando existe apenas histórico encerrado permanece pendente.

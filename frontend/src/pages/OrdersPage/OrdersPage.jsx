@@ -5,6 +5,7 @@ import { statusLabels } from '../../data/demo.js';
 import './OrdersPage.css';
 
 export default function OrdersPage({
+  cars,
   visibleOrders,
   orderFilter,
   setOrderFilter,
@@ -39,6 +40,7 @@ export default function OrdersPage({
         ))}
       </div>
       <OrdersList
+        cars={cars}
         orders={visibleOrders.filter(
           (o) => orderFilter === 'Todos' || statusLabels[o.status] === orderFilter
         )}

@@ -3,3 +3,5 @@ dist/
 AlugaCar_Prototipo.html
 *.log
 .openai/local/
+.env
+.env.local

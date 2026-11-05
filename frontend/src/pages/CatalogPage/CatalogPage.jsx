@@ -2,11 +2,11 @@ import React from 'react';
 import CarCard from '../../components/CarCard/CarCard.jsx';
 import Icon from '../../components/Icon/Icon.jsx';
 import Empty from '../../components/Empty/Empty.jsx';
-import { cars } from '../../data/cars.js';
 import { userName } from '../../data/format.js';
 import './CatalogPage.css';
 
 export default function CatalogPage({
+  cars,
   user,
   favorites,
   openCar,
@@ -45,7 +45,7 @@ export default function CatalogPage({
             <Icon name="pin" />
             Belo Horizonte, MG
           </span>
-          <small>Retirada na Aurora Mobilidade</small>
+          <small>Retirada na organização responsável</small>
         </div>
       </div>
       <div className="catalog-tools">

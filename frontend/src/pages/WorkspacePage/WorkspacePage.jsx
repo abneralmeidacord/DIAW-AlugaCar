@@ -7,6 +7,7 @@ import Icon from '../../components/Icon/Icon.jsx';
 import './WorkspacePage.css';
 
 export default function WorkspacePage({
+  cars,
   user,
   page,
   users,
@@ -93,13 +94,15 @@ export default function WorkspacePage({
           bank={user.role === 'banco'}
           onOpen={(u) => {
             const order = visibleOrders.find((o) => o.userId === u.id);
-            if (user.role === 'banco') onOpenCredit(order);
+            if (user.role === 'banco' && order.credit?.bankOrg === user.org)
+              onOpenCredit(order);
             else onOpenOrder(order);
           }}
         />
       )}
       {page === 'credits' && (
         <CreditList
+          cars={cars}
           orders={visibleOrders.filter((o) => o.credit?.bankOrg === user.org)}
           users={users}
           onOpen={onOpenCredit}
@@ -111,7 +114,12 @@ export default function WorkspacePage({
             <h2>{page === 'workspace' ? 'O que acontece agora' : 'Todos os pedidos'}</h2>
             <span>{agentOrders.length} pedidos da sua organização</span>
           </div>
-          <AgentTable orders={agentOrders} users={users} onOpen={onOpenOrder} />
+          <AgentTable
+            cars={cars}
+            orders={agentOrders}
+            users={users}
+            onOpen={onOpenOrder}
+          />
         </>
       )}
       <div className="workspace-note">

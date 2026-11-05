@@ -1,16 +1,23 @@
+import { carTone } from '../../data/cars.js';
 import React from 'react';
 import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Badge from '../Badge/Badge.jsx';
-import { carOf } from '../../data/cars.js';
 import { organizations, statusLabels } from '../../data/demo.js';
 import { money, dateLabel, daysBetween, initials } from '../../data/format.js';
 import { canManageOrder, canEditOrder } from '../../data/orders.js';
 import './OrderModal.css';
 
-export default function OrderModal({ order, user, client, onClose, onAction, onModal }) {
-  const car = carOf(order.carId);
+export default function OrderModal({
+  car,
+  order,
+  user,
+  client,
+  onClose,
+  onAction,
+  onModal,
+}) {
   const isClient = user.role === 'cliente';
   const manage = canManageOrder(user, order);
   const progress = { ALUGADO: 4, APROVADO: 3, AGUARDANDO_ACEITE: 2 };
@@ -53,7 +60,7 @@ export default function OrderModal({ order, user, client, onClose, onAction, onM
       onClose={onClose}
     >
       <div className="order-detail-top">
-        <div className={`order-detail-image tone-${car.tone}`}>
+        <div className={`order-detail-image tone-${carTone(car.category)}`}>
           <CarImage car={car} />
         </div>
         <div>
@@ -61,7 +68,7 @@ export default function OrderModal({ order, user, client, onClose, onAction, onM
           <h3>
             {car.brand} {car.model}
           </h3>
-          <p>{organizations[order.org] || 'Organização responsável'}</p>
+          <p>{order.orgName || organizations[order.org] || 'Organização responsável'}</p>
           <div className="order-detail-period">
             <Icon name="calendar" size={18} />
             {dateLabel(order.start)} — {dateLabel(order.end)}

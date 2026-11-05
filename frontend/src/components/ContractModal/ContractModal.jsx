@@ -3,14 +3,13 @@ import Icon from '../Icon/Icon.jsx';
 import Brand from '../Brand/Brand.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Badge from '../Badge/Badge.jsx';
-import { carOf } from '../../data/cars.js';
 import { organizations } from '../../data/demo.js';
 import { money, dateLabel, daysBetween } from '../../data/format.js';
 import './ContractModal.css';
 
-export default function ContractModal({ order, client, user, onClose, onAccept }) {
+export default function ContractModal({ car, order, client, user, onClose, onAccept }) {
   const [accepted, setAccepted] = useState(false);
-  const c = carOf(order.carId);
+  const c = car;
   return (
     <Modal
       title="Tudo combinado, por escrito."
@@ -43,7 +42,9 @@ export default function ContractModal({ order, client, user, onClose, onAccept }
           </div>
           <div>
             <dt>Organização</dt>
-            <dd>{organizations[order.org] || 'Organização responsável'}</dd>
+            <dd>
+              {order.orgName || organizations[order.org] || 'Organização responsável'}
+            </dd>
           </div>
           <div>
             <dt>Automóvel</dt>

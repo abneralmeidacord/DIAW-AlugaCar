@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Icon from '../Icon/Icon.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Field from '../Field/Field.jsx';
-import { carOf } from '../../data/cars.js';
 import { money, dateLabel, daysBetween } from '../../data/format.js';
 import './EvaluationModal.css';
 
-export default function EvaluationModal({ order, client, onClose, onSubmit }) {
+export default function EvaluationModal({ car, order, client, onClose, onSubmit }) {
   const [result, setResult] = useState('POSITIVO');
   const [note, setNote] = useState('');
   return (
@@ -24,7 +23,7 @@ export default function EvaluationModal({ order, client, onClose, onSubmit }) {
       >
         <div className="review-summary">
           <strong>
-            {carOf(order.carId).brand} {carOf(order.carId).model}
+            {car.brand} {car.model}
           </strong>
           <span>
             {dateLabel(order.start)} — {dateLabel(order.end)}

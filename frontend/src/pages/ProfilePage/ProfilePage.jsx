@@ -84,20 +84,12 @@ export default function ProfilePage({ user, orders, onSave, onDelete }) {
               </div>
               {user.role === 'cliente' ? (
                 <>
-                  <div className="form-grid">
-                    <Field
-                      label="CPF"
-                      value={data.cpf || ''}
-                      onChange={(e) => change('cpf', e.target.value)}
-                      required
-                    />
-                    <Field
-                      label="RG"
-                      value={data.rg || ''}
-                      onChange={(e) => change('rg', e.target.value)}
-                      required
-                    />
-                  </div>
+                  <Field
+                    label="CPF"
+                    value={data.cpf || ''}
+                    onChange={(e) => change('cpf', e.target.value)}
+                    required
+                  />
                   <Field
                     label="Endereço"
                     value={data.address || ''}

@@ -2,11 +2,12 @@ import React from 'react';
 import CarCard from '../../components/CarCard/CarCard.jsx';
 import Icon from '../../components/Icon/Icon.jsx';
 import CarImage from '../../components/CarImage/CarImage.jsx';
-import { cars, photos } from '../../data/cars.js';
+import { photos, cars as featuredCars } from '../../data/cars.js';
 import { addDays } from '../../data/format.js';
 import './HomePage.css';
 
 export default function HomePage({
+  cars,
   user,
   navigate,
   booking,
@@ -209,7 +210,7 @@ export default function HomePage({
           </button>
         </div>
         <div className="closing-car">
-          <CarImage car={cars[1]} />
+          <CarImage car={cars[1] || featuredCars[1]} />
           <span>Conforto para ir além. Liberdade para escolher.</span>
         </div>
       </section>

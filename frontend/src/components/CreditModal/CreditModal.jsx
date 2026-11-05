@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Icon from '../Icon/Icon.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Field from '../Field/Field.jsx';
-import { carOf } from '../../data/cars.js';
 import { money, daysBetween, incomeOf } from '../../data/format.js';
 import './CreditModal.css';
 
-export default function CreditModal({ order, client, onClose, onSubmit }) {
+export default function CreditModal({ car, order, client, onClose, onSubmit }) {
   const [amount, setAmount] = useState(daysBetween(order.start, order.end) * order.daily);
   return (
     <Modal
@@ -51,7 +50,7 @@ export default function CreditModal({ order, client, onClose, onSubmit }) {
         >
           <div className="review-summary">
             <strong>
-              {carOf(order.carId).brand} {carOf(order.carId).model}
+              {car.brand} {car.model}
             </strong>
             <span>
               Aluguel estimado: {money(daysBetween(order.start, order.end) * order.daily)}

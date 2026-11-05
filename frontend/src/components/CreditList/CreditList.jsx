@@ -6,7 +6,7 @@ import { carOf } from '../../data/cars.js';
 import { money, daysBetween, incomeOf } from '../../data/format.js';
 import './CreditList.css';
 
-export default function CreditList({ orders, users, onOpen }) {
+export default function CreditList({ cars, orders, users, onOpen }) {
   return orders.length ? (
     <div className="credit-list">
       {orders.map((o) => {
@@ -20,7 +20,7 @@ export default function CreditList({ orders, users, onOpen }) {
               <span className="small-text">{o.id}</span>
               <h3>{u?.name}</h3>
               <p>
-                {carOf(o.carId).brand} {carOf(o.carId).model} ·{' '}
+                {carOf(o.carId, cars).brand} {carOf(o.carId, cars).model} ·{' '}
                 {daysBetween(o.start, o.end)} diárias
               </p>
             </div>

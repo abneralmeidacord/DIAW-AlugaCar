@@ -18,14 +18,10 @@ export const cars = [
     plate: 'DEMO-01',
     matricula: 'AC-001',
     price: 890,
-    seats: 4,
-    gear: 'Automático',
     fuel: 'Gasolina',
     color: 'Prata',
-    power: '385 cv',
     org: 'aurora',
     photo: photos.porsche,
-    tone: 'blue',
     tag: 'Uma experiência à parte',
   },
   {
@@ -37,14 +33,10 @@ export const cars = [
     plate: 'DEMO-02',
     matricula: 'AC-002',
     price: 429,
-    seats: 5,
-    gear: 'Automático',
     fuel: 'Híbrido',
     color: 'Prata',
-    power: '204 cv',
     org: 'aurora',
     photo: photos.mercedes,
-    tone: 'sand',
     tag: 'Conforto em cada detalhe',
   },
   {
@@ -56,14 +48,10 @@ export const cars = [
     plate: 'DEMO-03',
     matricula: 'AC-003',
     price: 549,
-    seats: 5,
-    gear: 'Automático',
     fuel: 'Híbrido',
     color: 'Branco',
-    power: '250 cv',
     org: 'aurora',
     photo: photos.volvo,
-    tone: 'green',
     tag: 'Espaço para novos planos',
   },
   {
@@ -75,14 +63,10 @@ export const cars = [
     plate: 'DEMO-04',
     matricula: 'AC-004',
     price: 389,
-    seats: 5,
-    gear: 'Automático',
     fuel: 'Gasolina',
     color: 'Laranja',
-    power: '184 cv',
     org: 'aurora',
     photo: photos.bmw,
-    tone: 'sand',
     tag: 'O prazer de dirigir',
   },
   {
@@ -94,14 +78,10 @@ export const cars = [
     plate: 'DEMO-05',
     matricula: 'AC-005',
     price: 599,
-    seats: 5,
-    gear: 'Automático',
     fuel: 'Híbrido',
     color: 'Branco',
-    power: '250 cv',
     org: 'aurora',
     photo: photos.volvo,
-    tone: 'green',
     tag: 'Para ir um pouco além',
   },
   {
@@ -113,18 +93,25 @@ export const cars = [
     plate: 'DEMO-06',
     matricula: 'AC-006',
     price: 489,
-    seats: 5,
-    gear: 'Automático',
     fuel: 'Híbrido',
     color: 'Prata',
-    power: '204 cv',
     org: 'aurora',
     photo: photos.mercedes,
-    tone: 'sand',
     tag: 'Sua viagem merece',
   },
 ];
 
-export function carOf(id) {
-  return cars.find((car) => car.id === id) || cars[0];
+export function carTone(category) {
+  if (category?.toLowerCase() === 'premium') return 'blue';
+  if (category?.toLowerCase() === 'suv') return 'green';
+  return 'sand';
+}
+
+export function carOf(id, availableCars = cars) {
+  return (
+    availableCars.find((car) => car.id === id) ||
+    cars.find((car) => car.id === id) ||
+    availableCars[0] ||
+    cars[0]
+  );
 }

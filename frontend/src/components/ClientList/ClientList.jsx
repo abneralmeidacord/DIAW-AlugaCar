@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from '../Icon/Icon.jsx';
 import Empty from '../Empty/Empty.jsx';
-import { money, incomeOf, initials } from '../../data/format.js';
+import { money, initials } from '../../data/format.js';
 import './ClientList.css';
 
 export default function ClientList({ users, orders, bank, onOpen }) {
@@ -16,7 +16,9 @@ export default function ClientList({ users, orders, bank, onOpen }) {
             <span>
               {orders.filter((o) => o.userId === u.id).length} atendimentos vinculados
             </span>
-            {bank && <strong>Renda declarada: {money(incomeOf(u))}</strong>}
+            {bank && u.income != null && (
+              <strong>Renda declarada: {money(u.income)}</strong>
+            )}
           </div>
           <button className="text-link" onClick={() => onOpen(u)}>
             Ver atendimento

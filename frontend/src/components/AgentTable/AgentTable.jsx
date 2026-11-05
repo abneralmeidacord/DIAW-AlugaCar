@@ -7,7 +7,7 @@ import { statusLabels } from '../../data/demo.js';
 import { dateLabel, initials } from '../../data/format.js';
 import './AgentTable.css';
 
-export default function AgentTable({ orders, users, onOpen }) {
+export default function AgentTable({ cars, orders, users, onOpen }) {
   if (!orders.length)
     return (
       <Empty
@@ -44,9 +44,9 @@ export default function AgentTable({ orders, users, onOpen }) {
               </td>
               <td>
                 <strong>
-                  {carOf(o.carId).brand} {carOf(o.carId).model}
+                  {carOf(o.carId, cars).brand} {carOf(o.carId, cars).model}
                 </strong>
-                <small>{carOf(o.carId).category}</small>
+                <small>{carOf(o.carId, cars).category}</small>
               </td>
               <td>
                 {dateLabel(o.start)}

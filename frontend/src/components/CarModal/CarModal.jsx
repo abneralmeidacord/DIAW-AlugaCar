@@ -3,59 +3,69 @@ import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Field from '../Field/Field.jsx';
+import { carTone } from '../../data/cars.js';
 import { organizations } from '../../data/demo.js';
 import { money, addDays, daysBetween } from '../../data/format.js';
 import './CarModal.css';
 
-export default function CarModal({ car, booking, onClose, onSubmit }) {
+export default function CarModal({ car, booking, banks = [], onClose, onSubmit }) {
   const [start, setStart] = useState(booking.start);
   const [end, setEnd] = useState(booking.end);
   const [credit, setCredit] = useState(false);
+  const [bankId, setBankId] = useState(banks[0]?.id || '');
+  const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const days = daysBetween(start, end);
   return (
     <Modal
       wide
       title={`${car.brand} ${car.model}`}
-      subtitle={`${car.category} · ${car.year} · ${organizations[car.org]}`}
+      subtitle={`${car.category} · ${car.year} · ${car.orgName || organizations[car.org]}`}
       onClose={onClose}
     >
       <div className="car-detail-grid">
         <div>
-          <div className={`detail-car-image tone-${car.tone}`}>
+          <div className={`detail-car-image tone-${carTone(car.category)}`}>
             <span className="detail-tag">{car.tag}</span>
             <CarImage car={car} />
           </div>
           <div className="detail-spec-grid">
             {[
-              ['users', `${car.seats} pessoas`],
-              ['gear', car.gear],
+              ['calendar', car.year],
+              ['car', car.plate],
               ['fuel', car.fuel],
-              ['car', car.power],
-            ].map(([icon, label]) => (
-              <div key={icon}>
-                <Icon name={icon} size={24} />
-                <span>{label}</span>
-              </div>
-            ))}
+              ['spark', car.color],
+            ]
+              .filter(([, label]) => label)
+              .map(([icon, label]) => (
+                <div key={icon}>
+                  <Icon name={icon} size={24} />
+                  <span>{label}</span>
+                </div>
+              ))}
           </div>
           <div className="detail-caption">
             <Icon name="pin" />
             <div>
               <strong>Belo Horizonte, MG</strong>
-              <p>Retirada e devolução na Aurora Mobilidade.</p>
+              <p>Retirada e devolução na {car.orgName || 'organização responsável'}.</p>
             </div>
           </div>
         </div>
         <form
           className="booking-form stack-form"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
             if (!start || !end || start < addDays(0) || end <= start) {
               setError('Escolha uma devolução posterior à retirada e um período futuro.');
               return;
             }
-            onSubmit(car, { start, end, credit });
+            setBusy(true);
+            try {
+              await onSubmit(car, { start, end, credit, bankId: credit ? bankId : null });
+            } finally {
+              setBusy(false);
+            }
           }}
         >
           <div className="booking-price">
@@ -95,22 +105,38 @@ export default function CarModal({ car, booking, onClose, onSubmit }) {
             <input
               type="checkbox"
               checked={credit}
+              disabled={!banks.length}
               onChange={(e) => setCredit(e.target.checked)}
             />
             <div>
               <strong>Quero solicitar crédito de aluguel</strong>
               <span>
-                O Banco Horizonte poderá analisar a renda declarada no meu cadastro para
+                O banco escolhido poderá analisar a renda declarada no meu cadastro para
                 este atendimento.
               </span>
             </div>
           </label>
+          {credit && (
+            <Field label="Banco para análise">
+              <select
+                value={bankId}
+                onChange={(event) => setBankId(event.target.value)}
+                required
+              >
+                {banks.map((bank) => (
+                  <option key={bank.id} value={bank.id}>
+                    {bank.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          )}
           {error && (
             <p className="form-error" role="alert">
               {error}
             </p>
           )}
-          <button className="btn primary full" type="submit">
+          <button className="btn primary full" type="submit" disabled={busy}>
             Solicitar aluguel
             <Icon name="arrow" />
           </button>

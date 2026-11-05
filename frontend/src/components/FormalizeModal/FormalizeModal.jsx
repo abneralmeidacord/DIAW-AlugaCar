@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Icon from '../Icon/Icon.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Field from '../Field/Field.jsx';
-import { carOf } from '../../data/cars.js';
 import { dateLabel } from '../../data/format.js';
 import './FormalizeModal.css';
 
-export default function FormalizeModal({ order, onClose, onSubmit }) {
+export default function FormalizeModal({ car, order, onClose, onSubmit }) {
   const [terms, setTerms] = useState(
     'Retirada e devolução na unidade de Belo Horizonte, MG. O veículo deve ser devolvido no período combinado e nas condições de retirada. Valores e condições fictícios, exclusivos para demonstração acadêmica.'
   );
@@ -26,7 +25,7 @@ export default function FormalizeModal({ order, onClose, onSubmit }) {
         <div className="review-summary">
           <strong>Contrato de aluguel · {order.id.replace('ALG', 'CT')}</strong>
           <span>
-            {carOf(order.carId).brand} {carOf(order.carId).model}
+            {car.brand} {car.model}
           </span>
           <span>
             {dateLabel(order.start)} — {dateLabel(order.end)}

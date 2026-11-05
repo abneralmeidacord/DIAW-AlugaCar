@@ -1,11 +1,10 @@
 import React from 'react';
 import CarImage from '../CarImage/CarImage.jsx';
 import Modal from '../Modal/Modal.jsx';
-import { carOf } from '../../data/cars.js';
 import { dateLabel } from '../../data/format.js';
 import './ConfirmCancelModal.css';
 
-export default function ConfirmCancelModal({ order, onClose, onCancel }) {
+export default function ConfirmCancelModal({ car, order, onClose, onCancel }) {
   return (
     <Modal
       title="Cancelar este pedido?"
@@ -13,10 +12,10 @@ export default function ConfirmCancelModal({ order, onClose, onCancel }) {
       onClose={onClose}
     >
       <div className="confirmation-car">
-        <CarImage car={carOf(order.carId)} />
+        <CarImage car={car} />
         <div>
           <strong>
-            {carOf(order.carId).brand} {carOf(order.carId).model}
+            {car.brand} {car.model}
           </strong>
           <p>
             {dateLabel(order.start)} — {dateLabel(order.end)}

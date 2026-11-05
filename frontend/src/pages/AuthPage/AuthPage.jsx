@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Icon from '../../components/Icon/Icon.jsx';
 import Field from '../../components/Field/Field.jsx';
 import { photos } from '../../data/cars.js';
-import { createCredential, verifyCredential } from '../../data/auth.js';
 import './AuthPage.css';
 
-export default function AuthPage({ signup, db, onNavigate, onLogin, onRegister }) {
-  const [role, setRole] = useState('cliente');
+export default function AuthPage({
+  signup,
+  initialRole = 'cliente',
+  onNavigate,
+  onLogin,
+  onRegister,
+}) {
+  const [role, setRole] = useState(initialRole);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [values, setValues] = useState({
@@ -14,7 +19,6 @@ export default function AuthPage({ signup, db, onNavigate, onLogin, onRegister }
     email: 'cliente@alugacar.demo',
     password: 'demo123',
     cpf: '',
-    rg: '',
     address: '',
     profession: '',
     employer: '',
@@ -29,50 +33,23 @@ export default function AuthPage({ signup, db, onNavigate, onLogin, onRegister }
       password: signup ? '' : 'demo123',
     }));
   }, [role, signup]);
+  useEffect(() => setRole(initialRole), [initialRole]);
   const change = (key, value) => setValues((v) => ({ ...v, [key]: value }));
   const submit = async (e) => {
     e.preventDefault();
     setError('');
     setBusy(true);
     try {
-      if (!signup) {
-        const account = db.users.find(
-          (u) =>
-            u.email.toLowerCase() === values.email.trim().toLowerCase() && u.role === role
-        );
-        if (!account || !(await verifyCredential(account, values.password)))
-          throw new Error('Confira seu e-mail, senha e o perfil selecionado.');
-        onLogin(account.id);
-      } else {
-        if (
-          db.users.some(
-            (u) => u.email.toLowerCase() === values.email.trim().toLowerCase()
-          )
-        )
-          throw new Error('Este e-mail já está cadastrado. Entre na sua conta.');
-        if (values.password.length < 6)
-          throw new Error('Use uma senha com pelo menos 6 caracteres.');
-        const credential = await createCredential(values.password);
-        const id = crypto.randomUUID();
-        onRegister({
-          id,
-          role,
-          name: values.name.trim(),
-          email: values.email.trim().toLowerCase(),
-          credential,
-          ...(role === 'cliente'
-            ? {
-                cpf: values.cpf,
-                rg: values.rg,
-                address: values.address,
-                profession: values.profession,
-                jobs: values.employer
-                  ? [{ employer: values.employer, income: Number(values.income || 0) }]
-                  : [],
-              }
-            : { cnpj: values.cnpj, org: id }),
-        });
-      }
+      const account = {
+        ...values,
+        role,
+        email: values.email.trim().toLowerCase(),
+        jobs: values.employer
+          ? [{ employer: values.employer, income: Number(values.income || 0) }]
+          : [],
+      };
+      if (signup) await onRegister(account);
+      else await onLogin(account);
     } catch (err) {
       setError(err.message || 'Não foi possível concluir o acesso. Tente novamente.');
     } finally {
@@ -152,17 +129,12 @@ export default function AuthPage({ signup, db, onNavigate, onLogin, onRegister }
                   autoComplete: 'name',
                 })}
               </Field>
-              <div className="form-grid">
-                <Field label={role === 'cliente' ? 'CPF' : 'CNPJ'}>
-                  {input(role === 'cliente' ? 'cpf' : 'cnpj', {
-                    placeholder:
-                      role === 'cliente' ? '000.000.000-00' : '00.000.000/0000-00',
-                  })}
-                </Field>
-                {role === 'cliente' && (
-                  <Field label="RG">{input('rg', { placeholder: 'Seu RG' })}</Field>
-                )}
-              </div>
+              <Field label={role === 'cliente' ? 'CPF' : 'CNPJ'}>
+                {input(role === 'cliente' ? 'cpf' : 'cnpj', {
+                  placeholder:
+                    role === 'cliente' ? '000.000.000-00' : '00.000.000/0000-00',
+                })}
+              </Field>
             </>
           )}
           <Field label="E-mail">
@@ -176,10 +148,8 @@ export default function AuthPage({ signup, db, onNavigate, onLogin, onRegister }
             label="Senha"
             hint={
               signup
-                ? 'Pelo menos 6 caracteres. Use uma senha fictícia para esta demonstração.'
-                : !db.users.find((u) => u.email === values.email)?.credential
-                  ? 'Acesso de demonstração: demo123'
-                  : undefined
+                ? 'Pelo menos 6 caracteres.'
+                : 'Contas locais de demonstração: senha demo123.'
             }
           >
             {input('password', {
@@ -242,8 +212,8 @@ export default function AuthPage({ signup, db, onNavigate, onLogin, onRegister }
         <div className="auth-demo-note">
           <Icon name="shield" size={17} />
           <p>
-            Protótipo visual. Use apenas dados fictícios. A autenticação de produção será
-            integrada ao back-end.
+            Acesso autenticado pelo servidor. Use dados fictícios nas contas de
+            demonstração.
           </p>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import React from 'react';
 import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
+import { carTone } from '../../data/cars.js';
 import { money } from '../../data/format.js';
 import './CarCard.css';
 
 export default function CarCard({ car, onOpen, onFavorite, saved }) {
   return (
-    <article className={`car-card tone-${car.tone}`}>
+    <article className={`car-card tone-${carTone(car.category)}`}>
       <div className="car-card-top">
         <span>{car.category}</span>
         <button
@@ -31,17 +32,19 @@ export default function CarCard({ car, onOpen, onFavorite, saved }) {
         </div>
         <div className="car-specs">
           <span>
-            <Icon name="users" size={15} />
-            {car.seats} pessoas
-          </span>
-          <span>
-            <Icon name="gear" size={15} />
-            {car.gear}
+            <Icon name="calendar" size={15} />
+            {car.year}
           </span>
           <span>
             <Icon name="fuel" size={15} />
             {car.fuel}
           </span>
+          {car.color && (
+            <span>
+              <Icon name="spark" size={15} />
+              {car.color}
+            </span>
+          )}
         </div>
         <div className="car-card-bottom">
           <div>
