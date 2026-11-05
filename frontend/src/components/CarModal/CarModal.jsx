@@ -3,7 +3,7 @@ import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Field from '../Field/Field.jsx';
-import { carTone } from '../../data/cars.js';
+import { carTone, defaultLocation } from '../../data/cars.js';
 import { organizations } from '../../data/demo.js';
 import { money, addDays, daysBetween } from '../../data/format.js';
 import './CarModal.css';
@@ -47,7 +47,7 @@ export default function CarModal({ car, booking, banks = [], onClose, onSubmit }
           <div className="detail-caption">
             <Icon name="pin" />
             <div>
-              <strong>Belo Horizonte, MG</strong>
+              <strong>{car.location || defaultLocation}</strong>
               <p>Retirada e devolução na {car.orgName || 'organização responsável'}.</p>
             </div>
           </div>

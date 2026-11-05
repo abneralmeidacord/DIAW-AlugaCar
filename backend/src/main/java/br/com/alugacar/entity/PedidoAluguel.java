@@ -29,6 +29,8 @@ public class PedidoAluguel {
     private LocalDate dataFim;
     @Column(nullable = false, precision = 14, scale = 2)
     private BigDecimal diaria;
+    @Column(length = 120)
+    private String localidade;
     @Column(nullable = false, length = 30)
     private String status = "PENDENTE";
     @Column(nullable = false)
@@ -83,6 +85,14 @@ public class PedidoAluguel {
     }
     public void setDiaria(BigDecimal diaria) {
         this.diaria = diaria;
+    }
+
+    public String getLocalidade() {
+        return localidade == null ? Automovel.LOCALIDADE_PADRAO : localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
     public String getStatus() {
         return status;

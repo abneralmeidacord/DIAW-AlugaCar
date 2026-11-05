@@ -150,6 +150,7 @@ public class PedidoService {
         order.setDataFim(data.end());
         order.setCriadoEm(agora());
         order.setDiaria(car.getDiaria());
+        order.setLocalidade(car.localidadeRetirada());
         order.setCreditoSolicitado(data.credit());
         if (data.credit()) {
             Banco bank;

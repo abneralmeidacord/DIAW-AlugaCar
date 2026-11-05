@@ -3,6 +3,7 @@ import CarCard from '../../components/CarCard/CarCard.jsx';
 import Icon from '../../components/Icon/Icon.jsx';
 import Empty from '../../components/Empty/Empty.jsx';
 import { userName } from '../../data/format.js';
+import { carLocations, defaultLocation } from '../../data/cars.js';
 import './CatalogPage.css';
 
 export default function CatalogPage({
@@ -14,12 +15,13 @@ export default function CatalogPage({
   filters,
   setFilters,
 }) {
-  const { search, category, brand, sort, favoritesOnly } = filters;
+  const { search, category, brand, location, sort, favoritesOnly } = filters;
   const filteredCars = cars
     .filter(
       (c) =>
         (category === 'Todos' || c.category === category) &&
         (brand === 'Todas' || c.brand === brand) &&
+        (!location || (c.location || defaultLocation) === location) &&
         `${c.brand} ${c.model} ${c.category}`
           .toLowerCase()
           .includes(search.toLowerCase()) &&
@@ -43,7 +45,7 @@ export default function CatalogPage({
         <div className="catalog-side-note">
           <span>
             <Icon name="pin" />
-            Belo Horizonte, MG
+            {location || 'Localidades disponíveis'}
           </span>
           <small>Retirada na organização responsável</small>
         </div>
@@ -67,6 +69,19 @@ export default function CatalogPage({
           >
             {['Todas', ...new Set(cars.map((c) => c.brand))].map((b) => (
               <option key={b}>{b}</option>
+            ))}
+          </select>
+        </label>
+        <label className="select-filter">
+          <span>Localidade</span>
+          <select
+            aria-label="Filtrar por localidade"
+            value={location}
+            onChange={(e) => setFilters({ ...filters, location: e.target.value })}
+          >
+            <option value="">Todas</option>
+            {carLocations(cars, location).map((city) => (
+              <option key={city}>{city}</option>
             ))}
           </select>
         </label>
@@ -125,13 +140,14 @@ export default function CatalogPage({
         <Empty
           icon="search"
           title="Nenhum carro por aqui"
-          body="Tente outra marca, categoria ou termo de pesquisa."
+          body="Tente outra localidade, marca, categoria ou termo de pesquisa."
           action="Limpar filtros"
           onAction={() => {
             setFilters({
               ...filters,
               search: '',
               brand: 'Todas',
+              location: '',
               category: 'Todos',
               favoritesOnly: false,
             });

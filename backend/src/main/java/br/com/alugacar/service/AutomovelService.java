@@ -26,7 +26,7 @@ public class AutomovelService {
         this.usuarios = usuarios;
     }
 
-    public List<AutomovelView> pesquisar(String marca, String categoria, String busca) {
+    public List<AutomovelView> pesquisar(String marca, String categoria, String busca, String localidade) {
         String termo = busca == null ? "" : busca.toLowerCase(Locale.ROOT);
         List<AutomovelView> resultado = new ArrayList<>();
         List<Automovel> carros = bancoDeDados.createQuery(
@@ -39,6 +39,8 @@ public class AutomovelService {
                 continue;
             if (categoria != null && !categoria.isBlank() && !carro.getCategoria().equalsIgnoreCase(categoria))
                 continue;
+            if (localidade != null && !localidade.isBlank() && !carro.localidadeRetirada().equalsIgnoreCase(localidade.strip()))
+                continue;
 
             String descricao = carro.getMarca() + " " + carro.getModelo() + " " + carro.getCategoria();
             if (descricao.toLowerCase(Locale.ROOT).contains(termo)) {
@@ -46,6 +48,17 @@ public class AutomovelService {
             }
         }
         return resultado;
+    }
+
+    @Transactional(readOnly = true)
+    public List<String> localidades() {
+        return bancoDeDados.createQuery("""
+                select distinct coalesce(a.localidade, :padrao) from Automovel a
+                where type(a.proprietario) in (Empresa, Banco)
+                """, String.class)
+                .setParameter("padrao", Automovel.LOCALIDADE_PADRAO)
+                .getResultList()
+                .stream().sorted(String.CASE_INSENSITIVE_ORDER).toList();
     }
 
     public AutomovelView cadastrar(AutomovelRequest dados) {

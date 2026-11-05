@@ -17,13 +17,14 @@ public record AutomovelView(
     UUID org,
     String orgName,
     String photo,
-    String tag
+    String tag,
+    String location
 ) {
     public AutomovelView(Automovel carro) {
         this(carro.getId(), carro.getCodigo(), carro.getMatricula(), carro.getAno(),
             carro.getMarca(), carro.getModelo(), carro.getPlaca(), carro.getCategoria(),
             carro.getDiaria(), carro.getCombustivel(), carro.getCor(),
             carro.getProprietario().getId(), carro.getProprietario().getNomeExibicao(),
-            carro.getFoto(), carro.getDestaque());
+            carro.getFoto(), carro.getDestaque(), carro.localidadeRetirada());
     }
 }

@@ -16,8 +16,14 @@ public class AutomovelController {
     @GetMapping
     public List<AutomovelView> listar(@RequestParam(required = false) String marca,
                                     @RequestParam(required = false) String categoria,
-                                    @RequestParam(required = false) String busca) {
-        return automoveis.pesquisar(marca, categoria, busca);
+                                    @RequestParam(required = false) String busca,
+                                    @RequestParam(required = false) String localidade) {
+        return automoveis.pesquisar(marca, categoria, busca, localidade);
+    }
+
+    @GetMapping("/localidades")
+    public List<String> localidades() {
+        return automoveis.localidades();
     }
 
     @PostMapping

@@ -107,6 +107,14 @@ export function carTone(category) {
   return 'sand';
 }
 
+export const defaultLocation = 'Belo Horizonte, MG';
+
+export function carLocations(cars, selected = '') {
+  return [...new Set([...cars.map((car) => car.location || defaultLocation), selected])]
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+}
+
 export function carOf(id, availableCars = cars) {
   return (
     availableCars.find((car) => car.id === id) ||

@@ -1,4 +1,4 @@
-import { carTone } from '../../data/cars.js';
+import { carTone, defaultLocation } from '../../data/cars.js';
 import React from 'react';
 import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
@@ -69,6 +69,7 @@ export default function OrderModal({
             {car.brand} {car.model}
           </h3>
           <p>{order.orgName || organizations[order.org] || 'Organização responsável'}</p>
+          <p>Retirada e devolução em {order.location || defaultLocation}</p>
           <div className="order-detail-period">
             <Icon name="calendar" size={18} />
             {dateLabel(order.start)} — {dateLabel(order.end)}

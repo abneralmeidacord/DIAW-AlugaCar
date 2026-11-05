@@ -4,6 +4,7 @@ import Brand from '../Brand/Brand.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Badge from '../Badge/Badge.jsx';
 import { organizations } from '../../data/demo.js';
+import { defaultLocation } from '../../data/cars.js';
 import { money, dateLabel, daysBetween } from '../../data/format.js';
 import './ContractModal.css';
 
@@ -51,6 +52,10 @@ export default function ContractModal({ car, order, client, user, onClose, onAcc
             <dd>
               {c.brand} {c.model} · {c.year}
             </dd>
+          </div>
+          <div>
+            <dt>Retirada e devolução</dt>
+            <dd>{order.location || defaultLocation}</dd>
           </div>
           <div>
             <dt>Período</dt>

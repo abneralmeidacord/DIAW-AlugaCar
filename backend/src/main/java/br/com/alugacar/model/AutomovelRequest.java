@@ -24,7 +24,8 @@ public record AutomovelRequest(
         @NotBlank @Size(max = 50) String fuel,
         @Size(max = 50) String color,
         @Size(max = 2000) String photo,
-        @Size(max = 150) String tag) {
+        @Size(max = 150) String tag,
+        @Size(max = 120) String location) {
     public Automovel novoCarro(Usuario proprietario) {
         Automovel carro = new Automovel();
         carro.setProprietario(proprietario);
@@ -40,6 +41,9 @@ public record AutomovelRequest(
         carro.setCor(color);
         carro.setFoto(photo);
         carro.setDestaque(tag);
+        if (location != null && !location.isBlank()) {
+            carro.setLocalidade(location.strip());
+        }
         return carro;
     }
 }

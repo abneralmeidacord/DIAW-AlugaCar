@@ -15,6 +15,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "automoveis")
 public class Automovel {
+    public static final String LOCALIDADE_PADRAO = "Belo Horizonte, MG";
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -50,6 +52,8 @@ public class Automovel {
     private String foto;
     @Column(length = 150)
     private String destaque;
+    @Column(length = 120)
+    private String localidade;
 
     public Automovel() {
     }
@@ -156,5 +160,17 @@ public class Automovel {
 
     public void setDestaque(String destaque) {
         this.destaque = destaque;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String localidadeRetirada() {
+        return localidade == null ? LOCALIDADE_PADRAO : localidade;
     }
 }

@@ -13,6 +13,7 @@ public record PedidoView(
     UUID carId,
     UUID org,
     String orgName,
+    String location,
     LocalDate start,
     LocalDate end,
     BigDecimal daily,
@@ -31,7 +32,7 @@ public record PedidoView(
 
         return new PedidoView(pedido.getId(), numero, pedido.getCliente().getId(),
             pedido.getAutomovel().getId(), pedido.getDestinatario().getId(),
-            pedido.getDestinatario().getNomeExibicao(), pedido.getDataInicio(), pedido.getDataFim(),
+            pedido.getDestinatario().getNomeExibicao(), pedido.getLocalidade(), pedido.getDataInicio(), pedido.getDataFim(),
             pedido.getDiaria(), pedido.getStatus(), dataUtc(pedido.getCriadoEm()),
             avaliacao(pedido), contrato(pedido.getContrato()), credito(pedido, usuario), eventos);
     }

@@ -18,7 +18,7 @@ A classe `AlugaCarApplication` configura as rotas protegidas e a sessão de logi
 
 ## Executar com Supabase
 
-1. No SQL Editor do Supabase, execute `src/main/resources/db/migration/schema.sql`. Em um banco novo, ele cria as tabelas diretamente com os campos atuais. Se você aplicou só o primeiro script antigo, pare o backend e execute o mesmo arquivo para atualizar seu banco. A atualização apaga os valores de RG e preserva as contas e os carros. Se você já aplicou os dois scripts antigos, pode pular este passo.
+1. No SQL Editor do Supabase, execute `src/main/resources/db/migration/schema.sql`. Se você já tem um banco, pare o backend e execute a versão atual do arquivo para adicionar a localidade aos carros e pedidos. As contas e os carros existentes são preservados. Em instalações que ainda têm a coluna RG, o arquivo também remove essa coluna e seus valores.
 2. Nesta pasta, copie `.env.example` para `.env` e preencha a URL JDBC, o usuário e a senha do banco. Use **Connect → Session pooler**, porta **5432**, com `sslmode=require`. As variáveis não são chaves públicas/anon do Supabase: são as credenciais PostgreSQL do servidor.
 3. Confira `JAVA_HOME` apontando para um JDK 25. Execute:
 
@@ -97,7 +97,8 @@ Empresa e banco usam `role` igual a `empresa` ou `banco`, `name` como razão soc
 | POST               | `/api/auth/login`                                  | Login por formulário; retorna 204                  |
 | POST               | `/api/auth/logout`                                 | Encerrar sessão                                    |
 | GET / PUT / DELETE | `/api/perfil`                                      | Consultar, atualizar ou excluir o próprio cadastro |
-| GET                | `/api/carros?marca=Volvo&categoria=SUV&busca=XC60` | Pesquisar a frota                                  |
+| GET                | `/api/carros/localidades`                           | Listar as localidades da frota sem login            |
+| GET                | `/api/carros?marca=Volvo&categoria=SUV&localidade=Contagem%2C%20MG` | Pesquisar a frota                 |
 | POST               | `/api/carros`                                      | Agente cadastra um carro de sua organização        |
 | GET                | `/api/bancos`                                      | Organizações bancárias disponíveis                 |
 | GET                | `/api/clientes`                                    | Clientes dos atendimentos autorizados              |
@@ -115,7 +116,7 @@ Pedidos recebem `{ "carId": "UUID", "start": "2026-12-01", "end": "2026-12-03", 
 
 Alterações recebem `start` e `end`. Avaliação recebe `result` (`POSITIVO`/`NEGATIVO`) e `note`. Formalização recebe `terms`. Concessão recebe `amount`; **rendaConsiderada é lida do banco, nunca do JSON do cliente**. Datas de negócio usam `America/Sao_Paulo`; instantes de auditoria são armazenados em UTC.
 
-`POST /api/carros` recebe `code`, `matricula`, `year`, `brand`, `model`, `plate`, `category`, `price`, `fuel`, `color`, `photo` e `tag`. O proprietário é o agente autenticado.
+`POST /api/carros` recebe `code`, `matricula`, `year`, `brand`, `model`, `plate`, `category`, `price`, `fuel`, `color`, `photo`, `tag` e, opcionalmente, `location` no formato `Cidade, UF`. O proprietário é o agente autenticado. Os carros sem localidade continuam aparecendo em Belo Horizonte, MG. No modo demo há carros em Belo Horizonte, Betim e Contagem. Novos pedidos registram a localidade do carro no momento da solicitação.
 
 ## Decisões e propostas
 

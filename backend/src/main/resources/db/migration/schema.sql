@@ -53,7 +53,8 @@ create table if not exists alugacar.automoveis (
     combustivel varchar(50) not null,
     cor varchar(50),
     foto varchar(2000),
-    destaque varchar(150)
+    destaque varchar(150),
+    localidade varchar(120)
 );
 
 create table if not exists alugacar.pedidos_aluguel (
@@ -65,6 +66,7 @@ create table if not exists alugacar.pedidos_aluguel (
     data_inicio date not null,
     data_fim date not null,
     diaria numeric(14,2) not null check (diaria > 0),
+    localidade varchar(120),
     status varchar(30) not null check (status in ('PENDENTE','AGUARDANDO_ACEITE','APROVADO','ALUGADO','CANCELADO','REPROVADO','FINALIZADO')),
     credito_solicitado boolean not null,
     banco_credito_id uuid references alugacar.bancos(id),
@@ -116,6 +118,10 @@ create index if not exists idx_pedidos_cliente on alugacar.pedidos_aluguel(clien
 create index if not exists idx_pedidos_destinatario on alugacar.pedidos_aluguel(destinatario_id);
 create index if not exists idx_pedidos_banco on alugacar.pedidos_aluguel(banco_credito_id);
 revoke all on all tables in schema alugacar from public;
+
+-- Atualiza instalações que já tinham as tabelas de veículos e pedidos.
+alter table alugacar.automoveis add column if not exists localidade varchar(120);
+alter table alugacar.pedidos_aluguel add column if not exists localidade varchar(120);
 
 -- Ajusta bancos antigos que ainda têm RG ou colunas obrigatórias no cadastro de carros.
 -- As colunas antigas de carros continuam guardando os valores já cadastrados.

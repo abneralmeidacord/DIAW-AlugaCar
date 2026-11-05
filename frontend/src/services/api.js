@@ -47,6 +47,7 @@ async function request(path, options = {}) {
 
 export const api = {
   me: () => request('/perfil'),
+  locations: () => request('/carros/localidades'),
   async login(values) {
     await request('/auth/login', {
       method: 'POST',

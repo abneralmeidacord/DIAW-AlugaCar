@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +39,7 @@ public class AlugaCarApplication {
                 .cors(config -> config.configurationSource(cors))
                 .csrf(config -> config.csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()))
                 .authorizeHttpRequests(config -> config
+                        .requestMatchers(HttpMethod.GET, "/api/carros/localidades", "/api/automoveis/localidades").permitAll()
                         .requestMatchers("/api/auth/csrf", "/api/auth/register", "/api/auth/login", "/api/health",
                                 "/error")
                         .permitAll()

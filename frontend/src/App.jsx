@@ -20,7 +20,7 @@ import DemoModal from './components/DemoModal/DemoModal.jsx';
 import ConfirmCancelModal from './components/ConfirmCancelModal/ConfirmCancelModal.jsx';
 import DeleteAccountModal from './components/DeleteAccountModal/DeleteAccountModal.jsx';
 import Toast from './components/Toast/Toast.jsx';
-import { cars as featuredCars, carOf } from './data/cars.js';
+import { cars as featuredCars, carLocations, carOf } from './data/cars.js';
 import { api } from './services/api.js';
 import { addDays } from './data/format.js';
 import { canAccessOrder, canManageOrder } from './data/orders.js';
@@ -44,6 +44,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [db, setDB] = useState({ users: [], orders: [], favorites: readFavorites() });
   const [cars, setCars] = useState(featuredCars);
+  const [locations, setLocations] = useState([]);
   const [banks, setBanks] = useState([]);
   const [authRole, setAuthRole] = useState('cliente');
   const [page, setPage] = useState('home');
@@ -53,6 +54,7 @@ export default function App() {
     search: '',
     category: 'Todos',
     brand: 'Todas',
+    location: '',
     sort: 'recommended',
     favoritesOnly: false,
   });
@@ -79,6 +81,11 @@ export default function App() {
       }
     }
     restoreSession();
+    api.locations()
+      .then((items) => {
+        if (active) setLocations(items);
+      })
+      .catch(() => {});
     return () => {
       active = false;
     };
@@ -300,6 +307,9 @@ export default function App() {
             navigate={navigate}
             booking={booking}
             setBooking={setBooking}
+            locations={user ? carLocations(cars, filters.location) : locations}
+            location={filters.location}
+            onLocationChange={(location) => setFilters((current) => ({ ...current, location }))}
             favorites={favorites}
             openCar={openCar}
             favorite={favorite}

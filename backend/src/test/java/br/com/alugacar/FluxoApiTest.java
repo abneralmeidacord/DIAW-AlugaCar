@@ -261,6 +261,40 @@ class FluxoApiTest {
     }
 
     @Test
+    void pesquisaPorLocalidadeEGravaRetiradaNoPedido() throws Exception {
+        mvc.perform(get("/api/carros/localidades")).andExpect(status().isOk())
+                .andExpect(jsonPath("$[0]").value("Belo Horizonte, MG"))
+                .andExpect(jsonPath("$[1]").value("Betim, MG"))
+                .andExpect(jsonPath("$[2]").value("Contagem, MG"));
+
+        var client = login("cliente@alugacar.demo");
+        var resultado = send(client, get("/api/carros").param("localidade", "Contagem, MG"), null)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].location").value("Contagem, MG"))
+                .andExpect(jsonPath("$[1].location").value("Contagem, MG"))
+                .andReturn();
+        String carId = JsonPath.read(resultado.getResponse().getContentAsString(), "$[0].id");
+        var pedido = send(client, post("/api/pedidos"), Map.of(
+                "carId", carId,
+                "start", LocalDate.now().plusDays(3).toString(),
+                "end", LocalDate.now().plusDays(5).toString(),
+                "credit", false,
+                "location", "Betim, MG"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.location").value("Contagem, MG"))
+                .andReturn();
+
+        Automovel car = bancoDeDados.find(Automovel.class, UUID.fromString(carId));
+        car.setLocalidade("Betim, MG");
+        bancoDeDados.flush();
+        bancoDeDados.clear();
+        send(client, get("/api/pedidos/" + read(pedido, "id")), null)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.location").value("Contagem, MG"));
+    }
+
+    @Test
     void cadastraCarroComApenasOsCamposDoCatalogo() throws Exception {
         var empresa = login("empresa@alugacar.demo");
         var dados = Map.ofEntries(

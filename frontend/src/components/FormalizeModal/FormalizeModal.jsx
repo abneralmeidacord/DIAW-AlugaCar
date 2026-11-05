@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Icon from '../Icon/Icon.jsx';
 import Modal from '../Modal/Modal.jsx';
 import Field from '../Field/Field.jsx';
+import { defaultLocation } from '../../data/cars.js';
 import { dateLabel } from '../../data/format.js';
 import './FormalizeModal.css';
 
 export default function FormalizeModal({ car, order, onClose, onSubmit }) {
   const [terms, setTerms] = useState(
-    'Retirada e devolução na unidade de Belo Horizonte, MG. O veículo deve ser devolvido no período combinado e nas condições de retirada. Valores e condições fictícios, exclusivos para demonstração acadêmica.'
+    `Retirada e devolução em ${order.location || defaultLocation}. O veículo deve ser devolvido no período combinado e nas condições de retirada. Valores e condições fictícios, exclusivos para demonstração acadêmica.`
   );
   return (
     <Modal

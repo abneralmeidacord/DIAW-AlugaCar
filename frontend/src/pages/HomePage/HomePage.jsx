@@ -12,6 +12,9 @@ export default function HomePage({
   navigate,
   booking,
   setBooking,
+  locations,
+  location,
+  onLocationChange,
   favorites,
   openCar,
   favorite,
@@ -67,16 +70,22 @@ export default function HomePage({
           navigate('catalog');
         }}
       >
-        <div className="search-location">
+        <label className="search-location">
           <Icon name="pin" size={22} />
           <div>
             <span>Onde você vai começar?</span>
-            <strong>
-              Belo Horizonte, MG
-              <Icon name="chevron" size={14} />
-            </strong>
+            <select
+              aria-label="Localidade de retirada"
+              value={location}
+              onChange={(e) => onLocationChange(e.target.value)}
+            >
+              <option value="">Todas as localidades</option>
+              {locations.map((city) => (
+                <option key={city}>{city}</option>
+              ))}
+            </select>
           </div>
-        </div>
+        </label>
         <label>
           <Icon name="calendar" />
           <div>

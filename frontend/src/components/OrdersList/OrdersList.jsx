@@ -3,7 +3,7 @@ import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
 import Badge from '../Badge/Badge.jsx';
 import Empty from '../Empty/Empty.jsx';
-import { carTone, carOf } from '../../data/cars.js';
+import { carTone, carOf, defaultLocation } from '../../data/cars.js';
 import { organizations, statusLabels } from '../../data/demo.js';
 import { money, dateLabel, daysBetween } from '../../data/format.js';
 import './OrdersList.css';
@@ -37,7 +37,7 @@ export default function OrdersList({ cars, orders, onOpen, onBrowse }) {
                 {c.brand} {c.model}
               </h2>
               <p className="small-text">
-                {o.orgName || organizations[o.org] || 'Sua organização'} · Belo Horizonte
+                {o.orgName || organizations[o.org] || 'Sua organização'} · {o.location || defaultLocation}
               </p>
               <div className="order-summary">
                 <span>
