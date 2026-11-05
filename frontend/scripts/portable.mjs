@@ -2,9 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 const root = process.cwd(),
   dist = path.join(root, "dist");
-const fallbackImage =
-  "data:image/svg+xml;base64," +
-  fs.readFileSync(path.join(root, "public/images/car-fallback.svg")).toString("base64");
+const localImage = /\/images\/(?:car-fallback\.svg|frota\/[a-z0-9-]+\.png)/g;
 let html = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 html = html.replace(
   /<script\b[^>]*src="([^"]+)"[^>]*><\/script>/g,
@@ -12,7 +10,11 @@ html = html.replace(
     const file = path.join(dist, url.replace(/^\//, ""));
     const code = fs
       .readFileSync(file, "utf8")
-      .replaceAll("/images/car-fallback.svg", fallbackImage)
+      .replace(localImage, (url) => {
+        const type = url.endsWith(".svg") ? "svg+xml" : "png";
+        const file = path.join(dist, url.slice(1));
+        return `data:image/${type};base64,${fs.readFileSync(file).toString("base64")}`;
+      })
       .replace(/<\/script/gi, "<\\/script");
     return '<script type="module">' + code + "</script>";
   },

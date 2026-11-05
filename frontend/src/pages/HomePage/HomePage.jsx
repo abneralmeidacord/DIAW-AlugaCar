@@ -1,10 +1,26 @@
 import React from 'react';
+import { motion, stagger } from 'motion/react';
 import CarCard from '../../components/CarCard/CarCard.jsx';
 import Icon from '../../components/Icon/Icon.jsx';
 import CarImage from '../../components/CarImage/CarImage.jsx';
 import { photos, cars as featuredCars } from '../../data/cars.js';
 import { addDays } from '../../data/format.js';
 import './HomePage.css';
+
+const heroGroup = {
+  visible: { transition: { delayChildren: stagger(0.06) } },
+};
+
+const heroItem = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const revealOnScroll = {
+  initial: { opacity: 0, y: 10 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.15 },
+};
 
 export default function HomePage({
   cars,
@@ -29,29 +45,29 @@ export default function HomePage({
           alt="Porsche prata em uma estrada cercada por árvores"
         />
         <div className="hero-shade" />
-        <div className="hero-content">
-          <p className="hero-kicker">
+        <motion.div className="hero-content" variants={heroGroup} initial="hidden" animate="visible">
+          <motion.p className="hero-kicker" variants={heroItem}>
             <span /> LIBERDADE EM CADA ESCOLHA
-          </p>
-          <h1>
+          </motion.p>
+          <motion.h1 variants={heroItem}>
             Seu próximo
             <br />
             caminho.
             <br />
             <span>Do seu jeito.</span>
-          </h1>
-          <p className="hero-description">
+          </motion.h1>
+          <motion.p className="hero-description" variants={heroItem}>
             Da rotina aos planos que saem do papel.
             <br />
             Encontre o carro que combina com você.
-          </p>
-          <button className="btn white hero-cta" onClick={() => navigate('catalog')}>
+          </motion.p>
+          <motion.button className="btn white hero-cta" variants={heroItem} onClick={() => navigate('catalog')}>
             Explorar veículos
             <span>
               <Icon name="diagonal" />
             </span>
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
         <div className="hero-caption">
           <span className="caption-line" />
           <div>
@@ -63,8 +79,11 @@ export default function HomePage({
           </div>
         </div>
       </section>
-      <form
+      <motion.form
         className="hero-search"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.14 }}
         onSubmit={(e) => {
           e.preventDefault();
           navigate('catalog');
@@ -116,7 +135,7 @@ export default function HomePage({
           Encontrar meu carro
           <Icon name="search" size={19} />
         </button>
-      </form>
+      </motion.form>
       <div className="brand-strip" aria-label="Marcas no catálogo">
         <span>
           BOAS ESCOLHAS
@@ -130,7 +149,7 @@ export default function HomePage({
         <b className="mitsubishi-word">MITSUBISHI</b>
       </div>
       <section className="section-container featured-section">
-        <div className="section-heading">
+        <motion.div className="section-heading" {...revealOnScroll}>
           <div>
             <p className="eyebrow">UM CARRO PARA CADA MOMENTO</p>
             <h2>Qual é o seu próximo destino?</h2>
@@ -139,7 +158,7 @@ export default function HomePage({
             Ver todos os veículos
             <Icon name="diagonal" size={18} />
           </button>
-        </div>
+        </motion.div>
         <div className="car-grid">
           {cars.slice(0, 3).map((car) => (
             <CarCard
@@ -152,7 +171,7 @@ export default function HomePage({
           ))}
         </div>
       </section>
-      <section className="journey-section">
+      <motion.section className="journey-section" {...revealOnScroll}>
         <div className="journey-intro">
           <p className="eyebrow">MENOS BUROCRACIA. MAIS CAMINHO.</p>
           <h2>
@@ -202,8 +221,8 @@ export default function HomePage({
             </div>
           ))}
         </div>
-      </section>
-      <section className="closing-banner">
+      </motion.section>
+      <motion.section className="closing-banner" {...revealOnScroll}>
         <div>
           <p className="eyebrow">O CAMINHO É SEU</p>
           <h2>
@@ -220,7 +239,7 @@ export default function HomePage({
           <CarImage car={cars[1] || featuredCars[1]} />
           <span>Conforto para ir além. Liberdade para escolher.</span>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

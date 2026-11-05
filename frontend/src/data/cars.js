@@ -106,10 +106,18 @@ export const cars = [
   },
 ];
 
+const categoryTones = new Map([
+  ['premium', 'blue'],
+  ['suv', 'green'],
+  ['sedan', 'sand'],
+  ['elétrico', 'lilac'],
+  ['eletrico', 'lilac'],
+  ['picape', 'amber'],
+  ['hatch', 'rose'],
+]);
+
 export function carTone(category) {
-  if (category?.toLowerCase() === 'premium') return 'blue';
-  if (category?.toLowerCase() === 'suv') return 'green';
-  return 'sand';
+  return categoryTones.get(category?.trim().toLowerCase()) ?? 'sand';
 }
 
 export const defaultLocation = 'Belo Horizonte, MG';

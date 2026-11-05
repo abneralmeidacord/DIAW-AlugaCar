@@ -1,8 +1,8 @@
 .toast {
   position: fixed;
   bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
+  inset-inline: 0;
+  margin-inline: auto;
   background: #fff;
   border: 1px solid #d9e2d3;
   box-shadow: 0 10px 50px #14372b26;

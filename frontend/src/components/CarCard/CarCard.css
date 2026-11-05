@@ -2,13 +2,10 @@
   border: 1px solid #dce2d660;
   border-radius: 20px;
   overflow: hidden;
-  transition:
-    transform 0.22s,
-    box-shadow 0.22s;
+  transition: box-shadow 0.22s;
 }
 
 .car-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 14px 30px #173a280b;
 }
 
@@ -58,8 +55,11 @@
 
 .car-visual .car-image {
   opacity: 0.85;
-  filter: drop-shadow(0 15px 8px #344f2414);
   transition: transform 0.35s;
+}
+
+.car-visual .car-image:not([data-studio]) {
+  filter: drop-shadow(0 15px 8px #344f2414);
 }
 
 .car-visual:hover .car-image {

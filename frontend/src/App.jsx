@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import AuthPage from './pages/AuthPage/AuthPage.jsx';
 import ProfilePage from './pages/ProfilePage/ProfilePage.jsx';
 import CarModal from './components/CarModal/CarModal.jsx';
@@ -299,7 +300,11 @@ export default function App() {
         onDemo={() => setModal({ type: 'demo' })}
         logout={logout}
       />
-      <main>
+      <motion.main
+        key={page}
+        initial={page === 'home' ? false : { opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         {page === 'home' && (
           <HomePage
             cars={cars}
@@ -368,95 +373,108 @@ export default function App() {
             onDelete={() => setModal({ type: 'deleteAccount' })}
           />
         )}
-      </main>
+      </motion.main>
       <Footer user={user} navigate={navigate} />
-      {modal?.type === 'demo' && (
-        <DemoModal onClose={() => setModal(null)} onLogin={chooseDemoProfile} />
-      )}
-      {modal?.type === 'car' && (
-        <CarModal
-          car={carOf(modal.id, cars)}
-          banks={banks}
-          booking={booking}
-          onClose={() => setModal(null)}
-          onSubmit={createOrder}
-        />
-      )}
-      {currentOrder && modal?.type === 'order' && (
-        <OrderModal
-          car={currentCar}
-          order={currentOrder}
-          user={user}
-          client={currentClient}
-          onClose={() => setModal(null)}
-          onAction={doAction}
-          onModal={(type) =>
-            type === 'credit'
-              ? openCredit(currentOrder)
-              : setModal({ type, id: currentOrder.id })
-          }
-        />
-      )}
-      {currentOrder && modal?.type === 'evaluate' && (
-        <EvaluationModal
-          car={currentCar}
-          order={currentOrder}
-          client={currentClient}
-          onClose={() => setModal({ type: 'order', id: currentOrder.id })}
-          onSubmit={(payload) => doAction(currentOrder, 'evaluate', payload)}
-        />
-      )}
-      {currentOrder && modal?.type === 'formalize' && (
-        <FormalizeModal
-          car={currentCar}
-          order={currentOrder}
-          onClose={() => setModal({ type: 'order', id: currentOrder.id })}
-          onSubmit={(payload) => doAction(currentOrder, 'formalize', payload)}
-        />
-      )}
-      {currentOrder && modal?.type === 'contract' && (
-        <ContractModal
-          car={currentCar}
-          order={currentOrder}
-          client={currentClient}
-          user={user}
-          onClose={() => setModal({ type: 'order', id: currentOrder.id })}
-          onAccept={() => doAction(currentOrder, 'accept')}
-        />
-      )}
-      {currentOrder && modal?.type === 'credit' && (
-        <CreditModal
-          car={currentCar}
-          order={currentOrder}
-          client={currentClient}
-          onClose={() => setModal(null)}
-          onSubmit={(payload) => doAction(currentOrder, 'credit', payload)}
-        />
-      )}
-      {currentOrder && modal?.type === 'editOrder' && (
-        <EditOrderModal
-          order={currentOrder}
-          onClose={() => setModal({ type: 'order', id: currentOrder.id })}
-          onSave={editOrder}
-        />
-      )}
-      {currentOrder && modal?.type === 'confirmCancel' && (
-        <ConfirmCancelModal
-          car={currentCar}
-          order={currentOrder}
-          onClose={() => setModal({ type: 'order', id: currentOrder.id })}
-          onCancel={() => doAction(currentOrder, 'cancel')}
-        />
-      )}
-      {modal?.type === 'deleteAccount' && (
-        <DeleteAccountModal
-          user={user}
-          orders={db.orders}
-          onClose={() => setModal(null)}
-          onDelete={deleteAccount}
-        />
-      )}
-      {toast && <Toast message={toast} onClose={() => setToast('')} />}
+      <AnimatePresence mode="wait">
+        {modal?.type === 'demo' && (
+          <DemoModal key="demo" onClose={() => setModal(null)} onLogin={chooseDemoProfile} />
+        )}
+        {modal?.type === 'car' && (
+          <CarModal
+            key="car"
+            car={carOf(modal.id, cars)}
+            banks={banks}
+            booking={booking}
+            onClose={() => setModal(null)}
+            onSubmit={createOrder}
+          />
+        )}
+        {currentOrder && modal?.type === 'order' && (
+          <OrderModal
+            key="order"
+            car={currentCar}
+            order={currentOrder}
+            user={user}
+            client={currentClient}
+            onClose={() => setModal(null)}
+            onAction={doAction}
+            onModal={(type) =>
+              type === 'credit'
+                ? openCredit(currentOrder)
+                : setModal({ type, id: currentOrder.id })
+            }
+          />
+        )}
+        {currentOrder && modal?.type === 'evaluate' && (
+          <EvaluationModal
+            key="evaluate"
+            car={currentCar}
+            order={currentOrder}
+            client={currentClient}
+            onClose={() => setModal({ type: 'order', id: currentOrder.id })}
+            onSubmit={(payload) => doAction(currentOrder, 'evaluate', payload)}
+          />
+        )}
+        {currentOrder && modal?.type === 'formalize' && (
+          <FormalizeModal
+            key="formalize"
+            car={currentCar}
+            order={currentOrder}
+            onClose={() => setModal({ type: 'order', id: currentOrder.id })}
+            onSubmit={(payload) => doAction(currentOrder, 'formalize', payload)}
+          />
+        )}
+        {currentOrder && modal?.type === 'contract' && (
+          <ContractModal
+            key="contract"
+            car={currentCar}
+            order={currentOrder}
+            client={currentClient}
+            user={user}
+            onClose={() => setModal({ type: 'order', id: currentOrder.id })}
+            onAccept={() => doAction(currentOrder, 'accept')}
+          />
+        )}
+        {currentOrder && modal?.type === 'credit' && (
+          <CreditModal
+            key="credit"
+            car={currentCar}
+            order={currentOrder}
+            client={currentClient}
+            onClose={() => setModal(null)}
+            onSubmit={(payload) => doAction(currentOrder, 'credit', payload)}
+          />
+        )}
+        {currentOrder && modal?.type === 'editOrder' && (
+          <EditOrderModal
+            key="editOrder"
+            order={currentOrder}
+            onClose={() => setModal({ type: 'order', id: currentOrder.id })}
+            onSave={editOrder}
+          />
+        )}
+        {currentOrder && modal?.type === 'confirmCancel' && (
+          <ConfirmCancelModal
+            key="confirmCancel"
+            car={currentCar}
+            order={currentOrder}
+            onClose={() => setModal({ type: 'order', id: currentOrder.id })}
+            onCancel={() => doAction(currentOrder, 'cancel')}
+          />
+        )}
+        {modal?.type === 'deleteAccount' && (
+          <DeleteAccountModal
+            key="deleteAccount"
+            user={user}
+            orders={db.orders}
+            onClose={() => setModal(null)}
+            onDelete={deleteAccount}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {toast && <Toast key="notice" message={toast} onClose={() => setToast('')} />}
+      </AnimatePresence>
     </>
   );
 }

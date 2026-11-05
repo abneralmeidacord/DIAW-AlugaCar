@@ -288,6 +288,18 @@ main {
   background: #e4ebdb;
 }
 
+.tone-lilac {
+  background: #ebe3f5;
+}
+
+.tone-amber {
+  background: #f3e3cd;
+}
+
+.tone-rose {
+  background: #f4e3e8;
+}
+
 .page-heading h1 {
   font-size: 55px;
   line-height: 1.14;

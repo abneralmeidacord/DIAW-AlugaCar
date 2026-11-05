@@ -361,6 +361,9 @@
   height: 230px;
   object-fit: contain;
   mix-blend-mode: multiply;
+}
+
+.closing-car > .car-image:not([data-studio]) {
   filter: drop-shadow(0 18px 10px #2a40251b);
 }
 

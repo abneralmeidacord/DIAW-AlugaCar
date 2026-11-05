@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import Icon from '../Icon/Icon.jsx';
 import CarImage from '../CarImage/CarImage.jsx';
 import { carTone } from '../../data/cars.js';
@@ -7,16 +8,25 @@ import './CarCard.css';
 
 export default function CarCard({ car, onOpen, onFavorite, saved }) {
   return (
-    <article className={`car-card tone-${carTone(car.category)}`}>
+    <motion.article
+      className={`car-card tone-${carTone(car.category)}`}
+      layout="position"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      whileHover={{ y: -4 }}
+    >
       <div className="car-card-top">
         <span>{car.category}</span>
-        <button
+        <motion.button
           className={`favorite-button ${saved ? 'saved' : ''}`}
           aria-label={`${saved ? 'Remover dos' : 'Adicionar aos'} favoritos: ${car.model}`}
+          aria-pressed={saved}
+          whileTap={{ scale: 0.9 }}
           onClick={() => onFavorite(car)}
         >
           <Icon name="heart" size={18} />
-        </button>
+        </motion.button>
       </div>
       <button
         className="car-visual"
@@ -63,6 +73,6 @@ export default function CarCard({ car, onOpen, onFavorite, saved }) {
           </button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

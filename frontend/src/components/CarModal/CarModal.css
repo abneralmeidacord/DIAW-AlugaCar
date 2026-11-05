@@ -17,6 +17,12 @@
   mix-blend-mode: normal;
 }
 
+.detail-car-image > .car-image[data-studio] {
+  object-fit: contain;
+  background: #fff;
+  padding: 22px 12px 8px;
+}
+
 .detail-car-image > .car-image[data-fallback='true'] {
   object-fit: contain;
   padding: 36px 20px 15px;
