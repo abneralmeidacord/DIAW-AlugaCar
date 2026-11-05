@@ -41,25 +41,33 @@ Abra `http://localhost:5173`. O Vite encaminha `/api` ao backend. Para hospedage
 
 O Hibernate valida o esquema na inicialização. Com `DB_INIT_MODE=never`, aplique o arquivo pelo SQL Editor. A opção `DB_INIT_MODE=always` executa `schema.sql` na inicialização do backend com PostgreSQL.
 
+Para carregar a frota de testes diretamente no Supabase, execute [supabase.sql](src/main/resources/db/seed/supabase.sql) no SQL Editor após criar as tabelas. O script cadastra três empresas, três bancos e 16 automóveis das marcas Porsche, BMW, Mercedes-Benz, Volvo e Mitsubishi. As contas existentes mantêm suas senhas. O script atualiza as fotos dos veículos correspondentes da carga e preserva pedidos e outros cadastros.
+
 ## Executar localmente sem as credenciais
 
 ```powershell
 mvn spring-boot:run "-Dspring-boot.run.profiles=local"
 ```
 
-O perfil **local** usa H2 em arquivo `backend/data/`, sem conectar ao Supabase. É uma alternativa de desenvolvimento; o perfil padrão continua exigindo PostgreSQL. Os testes usam H2 em memória com dados isolados e transações revertidas.
+O perfil **local** usa H2 em `backend/data/` e inicia sem carga automática. Os testes usam H2 em memória com seus próprios dados de demonstração e transações revertidas.
 
-Se o banco H2 da demo foi criado antes da remoção do RG e ainda exige os campos antigos, pare o backend e renomeie `backend/data/alugacar.mv.db` para `alugacar-backup.mv.db` na mesma pasta. A próxima execução do perfil local cria um novo banco de demonstração. Seus dados anteriores ficam no backup.
+Se o banco H2 foi criado antes da remoção do RG e ainda exige os campos antigos, pare o backend e renomeie `backend/data/alugacar.mv.db` para `alugacar-backup.mv.db` na mesma pasta. A próxima execução do perfil local cria um banco vazio. Seus dados anteriores ficam no backup.
 
-O perfil local cria três contas e seis automóveis caso não existam:
+## Contas de demonstração
 
-| Perfil  | Login                   | Senha local |
-| ------- | ----------------------- | ----------- |
-| Cliente | `cliente@alugacar.demo` | `demo123`   |
-| Empresa | `empresa@alugacar.demo` | `demo123`   |
-| Banco   | `banco@alugacar.demo`   | `demo123`   |
+O script do Supabase cria três empresas e três bancos. A conta de cliente é criada pela carga em Java, usada nos testes e disponível com `APP_SEED_DEMO=true` no perfil padrão.
 
-O fluxo começa na escolha do automóvel. O botão de demo do frontend escolhe o perfil da tela de login. No Supabase, a criação das contas de demonstração é desativada por padrão (`APP_SEED_DEMO=false`). Também é possível cadastrar as organizações pela tela e cadastrar sua frota pelo endpoint protegido `POST /api/carros`.
+| Perfil | Conta | Login |
+| --- | --- | --- |
+| Cliente | Cliente de teste | `cliente@alugacar.demo` |
+| Empresa | Aurora Mobilidade | `empresa@alugacar.demo` |
+| Empresa | Rota Minas Rent | `rotaminas@alugacar.demo` |
+| Empresa | Via Verde Locações | `viaverde@alugacar.demo` |
+| Banco | Banco Horizonte | `banco@alugacar.demo` |
+| Banco | Banco Serra | `banco.serra@alugacar.demo` |
+| Banco | Banco Veredas | `banco.veredas@alugacar.demo` |
+
+A senha das contas de demonstração é `demo123`. No Supabase, a carga é desativada por padrão. Para usar um projeto Supabase de testes, configure `APP_SEED_DEMO=true` no `.env` e inicie o backend. Também é possível cadastrar as organizações pela tela e cadastrar sua frota pelo endpoint protegido `POST /api/carros`.
 
 ## Autenticação e chamadas HTTP
 
@@ -116,7 +124,7 @@ Pedidos recebem `{ "carId": "UUID", "start": "2026-12-01", "end": "2026-12-03", 
 
 Alterações recebem `start` e `end`. Avaliação recebe `result` (`POSITIVO`/`NEGATIVO`) e `note`. Formalização recebe `terms`. Concessão recebe `amount`; **rendaConsiderada é lida do banco, nunca do JSON do cliente**. Datas de negócio usam `America/Sao_Paulo`; instantes de auditoria são armazenados em UTC.
 
-`POST /api/carros` recebe `code`, `matricula`, `year`, `brand`, `model`, `plate`, `category`, `price`, `fuel`, `color`, `photo`, `tag` e, opcionalmente, `location` no formato `Cidade, UF`. O proprietário é o agente autenticado. Os carros sem localidade continuam aparecendo em Belo Horizonte, MG. No modo demo há carros em Belo Horizonte, Betim e Contagem. Novos pedidos registram a localidade do carro no momento da solicitação.
+`POST /api/carros` recebe `code`, `matricula`, `year`, `brand`, `model`, `plate`, `category`, `price`, `fuel`, `color`, `photo`, `tag` e, opcionalmente, `location` no formato `Cidade, UF`. O proprietário é o agente autenticado. Os carros sem localidade continuam aparecendo em Belo Horizonte, MG. Novos pedidos registram a localidade do carro no momento da solicitação.
 
 ## Decisões e propostas
 

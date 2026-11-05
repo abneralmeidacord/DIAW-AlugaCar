@@ -8,19 +8,28 @@
   height: 280px;
   border-radius: 15px;
   position: relative;
-  padding: 36px 20px 15px;
+  overflow: hidden;
 }
 
 .detail-car-image > .car-image {
-  filter: drop-shadow(0 16px 10px #1a392015);
+  display: block;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+
+.detail-car-image > .car-image[data-fallback='true'] {
+  object-fit: contain;
+  padding: 36px 20px 15px;
 }
 
 .detail-tag {
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 1;
   font-size: 9px;
   color: #556149;
+  background: #f7f9f2;
   border: 1px solid #87996b55;
   border-radius: 16px;
   padding: 7px 10px;

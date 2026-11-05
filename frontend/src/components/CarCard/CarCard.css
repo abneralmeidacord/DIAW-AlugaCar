@@ -57,6 +57,7 @@
 }
 
 .car-visual .car-image {
+  opacity: 0.85;
   filter: drop-shadow(0 15px 8px #344f2414);
   transition: transform 0.35s;
 }

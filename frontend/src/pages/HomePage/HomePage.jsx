@@ -127,6 +127,7 @@ export default function HomePage({
         <b className="bmw-word">BMW</b>
         <b className="mercedes-word">Mercedes-Benz</b>
         <b className="volvo-word">VOLVO</b>
+        <b className="mitsubishi-word">MITSUBISHI</b>
       </div>
       <section className="section-container featured-section">
         <div className="section-heading">

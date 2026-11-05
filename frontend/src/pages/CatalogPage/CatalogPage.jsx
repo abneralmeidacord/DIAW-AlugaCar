@@ -95,7 +95,7 @@ export default function CatalogPage({
       </div>
       <div className="catalog-subtools">
         <div className="category-tabs">
-          {['Todos', 'Sedan', 'SUV', 'Premium'].map((c) => (
+          {[...new Set(['Todos', ...cars.map((c) => c.category)])].map((c) => (
             <button
               key={c}
               className={category === c ? 'active' : ''}

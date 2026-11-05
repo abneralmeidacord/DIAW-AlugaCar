@@ -87,9 +87,13 @@ class FluxoApiTest {
         Automovel car = bancoDeDados
                 .createQuery("select a from Automovel a where a.codigo = 'porsche'", Automovel.class)
                 .getSingleResult();
-        var result = send(client, post("/api/pedidos"),
-                Map.of("carId", car.getId(), "start", LocalDate.now().plusDays(3).toString(), "end",
-                        LocalDate.now().plusDays(5).toString(), "credit", credit))
+        Map<String, Object> dados = new HashMap<>(Map.of(
+                "carId", car.getId(), "start", LocalDate.now().plusDays(3).toString(),
+                "end", LocalDate.now().plusDays(5).toString(), "credit", credit));
+        if (credit) {
+            dados.put("bankId", buscarUsuario("banco@alugacar.demo").getId());
+        }
+        var result = send(client, post("/api/pedidos"), dados)
                 .andExpect(status().isCreated()).andExpect(jsonPath("$.status").value("PENDENTE")).andReturn();
         return read(result, "id");
     }
@@ -230,6 +234,8 @@ class FluxoApiTest {
         send(bank, get("/api/pedidos/" + privateOrder), null).andExpect(status().isForbidden());
         send(bank, get("/api/clientes/" + clientId + "/renda"), null).andExpect(status().isForbidden());
         String id = order(client, true);
+        var otherBank = login("banco.serra@alugacar.demo");
+        send(otherBank, get("/api/pedidos/" + id), null).andExpect(status().isForbidden());
         send(company, get("/api/clientes"), null).andExpect(jsonPath("$[0].jobs.length()").value(0))
                 .andExpect(jsonPath("$[0].cpf").isEmpty());
         send(bank, get("/api/clientes/" + clientId + "/renda"), null).andExpect(status().isOk())
@@ -253,6 +259,10 @@ class FluxoApiTest {
     @Test
     void pesquisaFiltraMarcaECategoria() throws Exception {
         var browser = login("cliente@alugacar.demo");
+        send(browser, get("/api/carros").param("categoria", "Elétrico").param("localidade", "Nova Lima, MG"), null)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].orgName").value("Via Verde Locações"));
         send(browser, get("/api/automoveis").param("marca", "Volvo").param("categoria", "SUV"), null)
                 .andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$[0].brand").value("Volvo"));

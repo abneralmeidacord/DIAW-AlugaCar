@@ -43,7 +43,11 @@ export default function Footer({ user, navigate }) {
             Desenvolvedor - Abner Almeida
             <Icon name="diagonal" size={13} />
           </a>
-          <p>Projeto acadêmico · DIAW · 2026</p>
+          <p>
+            Projeto acadêmico · DIAW · 2026
+            <br />
+            <a href="/images/creditos.html">Créditos das fotos da frota</a>
+          </p>
         </div>
       </div>
       <div className="footer-bottom">

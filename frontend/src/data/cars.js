@@ -1,12 +1,17 @@
 export const photos = {
   hero: 'https://hips.hearstapps.com/hmg-prod/images/gt-silver-metallic-003-sim2474-edit-65760fce378bf.jpg',
   porsche:
-    'https://www.enterprise.co.uk/en/exotic-car-hire/vehicles/sports-car-convertible/porsche-911-carrera-s-coupe/_jcr_content/root/teaser_image.coreimg.png/1648144257625/porsche-911-carrera-s-coupe-hero-thumbnail-2048x1360.png',
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/2024_Porsche_911_992_Carrera.jpg/960px-2024_Porsche_911_992_Carrera.jpg',
   mercedes:
-    'https://fa-coreapi-pro.azurewebsites.net/api/Storage/trim/download/mercedes_c200_68ede658aeab85001dfc8023.png',
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Mercedes-Benz_C_200_AVANTGARDE_%28W206%29_front.jpg/960px-Mercedes-Benz_C_200_AVANTGARDE_%28W206%29_front.jpg',
   volvo:
-    'https://ik.imagekit.io/hertzch/minilease/media/volvo_xc60_1.png?tr=w-1000%2Car-810-466%2Cfo-center',
-  bmw: 'https://cdn.imgbin.com/12/2/5/imgbin-2018-bmw-320i-xdrive-car-luxury-vehicle-sedan-temperature-zones-sc-zi8vGPnCPfHDqwjcPV37GWXzr.jpg',
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/2023_Volvo_XC60_T8_R-Line_front.jpg/960px-2023_Volvo_XC60_T8_R-Line_front.jpg',
+  bmw:
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/BMW_320i_%28G20%2C_2023%29_%2854524564626%29.jpg/960px-BMW_320i_%28G20%2C_2023%29_%2854524564626%29.jpg',
+  volvoPlus:
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Volvo_XC60_B5_AWD_Pine_Grey_Metallic_CN-spec_diplomatic_front_right.jpg/960px-Volvo_XC60_B5_AWD_Pine_Grey_Metallic_CN-spec_diplomatic_front_right.jpg',
+  mercedesExclusive:
+    'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Mercedes-Benz_C200_AVANTGARDE_%28W206%29_front.jpg/960px-Mercedes-Benz_C200_AVANTGARDE_%28W206%29_front.jpg',
 };
 export const cars = [
   {
@@ -81,7 +86,7 @@ export const cars = [
     fuel: 'Híbrido',
     color: 'Branco',
     org: 'aurora',
-    photo: photos.volvo,
+    photo: photos.volvoPlus,
     tag: 'Para ir um pouco além',
   },
   {
@@ -96,7 +101,7 @@ export const cars = [
     fuel: 'Híbrido',
     color: 'Prata',
     org: 'aurora',
-    photo: photos.mercedes,
+    photo: photos.mercedesExclusive,
     tag: 'Sua viagem merece',
   },
 ];

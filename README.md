@@ -24,4 +24,4 @@ npm install
 npm run dev
 ```
 
-Abra `http://localhost:5173`. O perfil local usa H2 e cria contas de demonstração; o perfil padrão exige as credenciais do Supabase em `backend/.env`. Consulte as instruções do backend para aplicar o SQL e configurar a conexão real.
+Abra `http://localhost:5173`. O perfil local usa H2 sem carga automática. O perfil padrão exige as credenciais do Supabase em `backend/.env`. Consulte as instruções do backend para aplicar o SQL e configurar a conexão.
