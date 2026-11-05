@@ -99,20 +99,6 @@
   letter-spacing: -0.4px;
 }
 
-.hero-pagination {
-  position: absolute;
-  right: 50px;
-  top: 37px;
-  font-size: 10px;
-  word-spacing: 10px;
-  color: #c2d0bc;
-}
-
-.hero-pagination b {
-  color: white;
-  font-weight: 500;
-}
-
 .hero-search {
   position: relative;
   max-width: 1186px;
@@ -524,12 +510,6 @@
 
   .hero-description {
     font-size: 12px;
-  }
-
-  .hero-pagination {
-    right: 24px;
-    top: 30px;
-    font-size: 8px;
   }
 
   .hero-search {

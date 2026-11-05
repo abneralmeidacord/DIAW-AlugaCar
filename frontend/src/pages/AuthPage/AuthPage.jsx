@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Icon from '../../components/Icon/Icon.jsx';
 import Field from '../../components/Field/Field.jsx';
 import { photos } from '../../data/cars.js';
@@ -16,8 +16,8 @@ export default function AuthPage({
   const [busy, setBusy] = useState(false);
   const [values, setValues] = useState({
     name: '',
-    email: 'cliente@alugacar.demo',
-    password: 'demo123',
+    email: '',
+    password: '',
     cpf: '',
     address: '',
     profession: '',
@@ -25,15 +25,6 @@ export default function AuthPage({
     income: '',
     cnpj: '',
   });
-  useEffect(() => {
-    setError('');
-    setValues((v) => ({
-      ...v,
-      email: signup ? '' : `${role}@alugacar.demo`,
-      password: signup ? '' : 'demo123',
-    }));
-  }, [role, signup]);
-  useEffect(() => setRole(initialRole), [initialRole]);
   const change = (key, value) => setValues((v) => ({ ...v, [key]: value }));
   const submit = async (e) => {
     e.preventDefault();
@@ -110,7 +101,10 @@ export default function AuthPage({
               key={r}
               type="button"
               className={role === r ? 'active' : ''}
-              onClick={() => setRole(r)}
+              onClick={() => {
+                setRole(r);
+                setError('');
+              }}
             >
               <Icon name={icon} size={17} />
               {label}
@@ -144,14 +138,7 @@ export default function AuthPage({
               autoComplete: 'email',
             })}
           </Field>
-          <Field
-            label="Senha"
-            hint={
-              signup
-                ? 'Pelo menos 6 caracteres.'
-                : 'Contas locais de demonstração: senha demo123.'
-            }
-          >
+          <Field label="Senha" hint={signup ? 'Pelo menos 6 caracteres.' : undefined}>
             {input('password', {
               type: 'password',
               minLength: 6,
@@ -209,12 +196,9 @@ export default function AuthPage({
             {signup ? 'Entrar' : 'Crie sua conta'}
           </button>
         </p>
-        <div className="auth-demo-note">
+        <div className="auth-security-note">
           <Icon name="shield" size={17} />
-          <p>
-            Acesso autenticado pelo servidor. Use dados fictícios nas contas de
-            demonstração.
-          </p>
+          <p>Seus dados são protegidos. O acesso à sua conta exige autenticação.</p>
         </div>
       </div>
     </section>

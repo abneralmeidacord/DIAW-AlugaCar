@@ -39,22 +39,20 @@
   margin-bottom: 7px;
 }
 
-.footer-note > span {
+.footer-note > a {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 9px 13px;
   border: 1px solid #456256;
   border-radius: 20px;
-  font-size: 9px;
+  font-size: 11px;
   margin: 0 0 15px;
+  text-decoration: none;
 }
 
-.footer-note i {
-  background: #c4d49d;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
+.footer-note > a:hover {
+  background: #25493e;
 }
 
 .footer-note p {

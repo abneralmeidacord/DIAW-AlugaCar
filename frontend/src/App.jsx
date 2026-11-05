@@ -11,6 +11,7 @@ import EditOrderModal from './components/EditOrderModal/EditOrderModal.jsx';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import HomePage from './pages/HomePage/HomePage.jsx';
+import HowItWorksPage from './pages/HowItWorksPage/HowItWorksPage.jsx';
 import CatalogPage from './pages/CatalogPage/CatalogPage.jsx';
 import OrdersPage from './pages/OrdersPage/OrdersPage.jsx';
 import WorkspacePage from './pages/WorkspacePage/WorkspacePage.jsx';
@@ -97,7 +98,7 @@ export default function App() {
 
   const notify = (message) => setToast(message);
   function navigate(target) {
-    if (!user && !['home', 'login', 'signup'].includes(target)) {
+    if (!user && !['home', 'how-it-works', 'login', 'signup'].includes(target)) {
       setReturnTo({ page: target });
       setPage('login');
       return;
@@ -303,6 +304,7 @@ export default function App() {
             favorite={favorite}
           />
         )}
+        {page === 'how-it-works' && <HowItWorksPage navigate={navigate} />}
         {page === 'catalog' && user && (
           <CatalogPage
             cars={cars}
@@ -316,6 +318,7 @@ export default function App() {
         )}
         {['login', 'signup'].includes(page) && (
           <AuthPage
+            key={`${page}-${authRole}`}
             signup={page === 'signup'}
             initialRole={authRole}
             onNavigate={navigate}
@@ -354,7 +357,7 @@ export default function App() {
           />
         )}
       </main>
-      <Footer user={user} navigate={navigate} onDemo={() => setModal({ type: 'demo' })} />
+      <Footer user={user} navigate={navigate} />
       {modal?.type === 'demo' && (
         <DemoModal onClose={() => setModal(null)} onLogin={chooseDemoProfile} />
       )}

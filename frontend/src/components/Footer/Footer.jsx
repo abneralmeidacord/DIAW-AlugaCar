@@ -3,7 +3,7 @@ import Icon from '../Icon/Icon.jsx';
 import Brand from '../Brand/Brand.jsx';
 import './Footer.css';
 
-export default function Footer({ user, navigate, onDemo }) {
+export default function Footer({ user, navigate }) {
   return (
     <footer className="site-footer">
       <div className="footer-main">
@@ -31,17 +31,18 @@ export default function Footer({ user, navigate, onDemo }) {
           <button onClick={() => navigate(user ? 'profile' : 'signup')}>
             {user ? 'Meu cadastro' : 'Criar uma conta'}
           </button>
-          <button onClick={() => onDemo()}>Conhecer os perfis</button>
+          <button onClick={() => navigate('how-it-works')}>Como funciona</button>
         </div>
         <div className="footer-note">
-          <span>
-            <i /> Protótipo de demonstração
-          </span>
-          <p>
-            Dados, preços e contratos fictícios.
-            <br />
-            Projeto acadêmico · DIAW · 2026
-          </p>
+          <a
+            href="https://abneralmeida-portfolio.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Desenvolvedor - Abner Almeida
+            <Icon name="diagonal" size={13} />
+          </a>
+          <p>Projeto acadêmico · DIAW · 2026</p>
         </div>
       </div>
       <div className="footer-bottom">

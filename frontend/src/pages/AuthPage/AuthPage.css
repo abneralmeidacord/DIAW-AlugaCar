@@ -123,7 +123,7 @@
   padding: 3px;
 }
 
-.auth-demo-note {
+.auth-security-note {
   display: flex;
   gap: 9px;
   padding-top: 21px;
@@ -132,11 +132,11 @@
   color: #575e4e;
 }
 
-.auth-demo-note svg {
+.auth-security-note svg {
   flex-shrink: 0;
 }
 
-.auth-demo-note p {
+.auth-security-note p {
   font-size: 9px;
   line-height: 1.7;
 }
@@ -284,11 +284,11 @@
   text-underline-offset: 3px;
 }
 
-.auth-demo-note {
+.auth-security-note {
   color: #53634f;
 }
 
-.auth-demo-note p {
+.auth-security-note p {
   font-size: 11px;
 }
 

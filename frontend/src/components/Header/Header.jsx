@@ -7,6 +7,7 @@ import './Header.css';
 export default function Header({ user, page, navigate, onDemo, logout }) {
   const [mobile, setMobile] = useState(false);
   const [menu, setMenu] = useState(false);
+  const showDemo = page !== 'login' && page !== 'signup';
   useEffect(() => {
     setMobile(false);
     setMenu(false);
@@ -16,9 +17,11 @@ export default function Header({ user, page, navigate, onDemo, logout }) {
     ['catalog', 'Explorar carros'],
   ];
 
-  if (user?.role === 'cliente') {
+  if (!user) {
+    navigation.push(['how-it-works', 'Como funciona']);
+  } else if (user.role === 'cliente') {
     navigation.push(['orders', 'Meus pedidos']);
-  } else if (user) {
+  } else {
     navigation = [
       ['workspace', 'Visão geral'],
       ['agent-orders', 'Pedidos'],
@@ -35,27 +38,22 @@ export default function Header({ user, page, navigate, onDemo, logout }) {
             <button
               key={key}
               className={page === key ? 'active' : ''}
-              onClick={() => navigate(key)}
+              aria-current={page === key ? 'page' : undefined}
+              onClick={() => {
+                setMobile(false);
+                navigate(key);
+              }}
             >
               {label}
             </button>
           ))}
-          {!user && (
-            <button
-              onClick={() =>
-                document
-                  .getElementById('how-it-works')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              Como funciona
-            </button>
-          )}
         </nav>
         <div className="header-actions">
-          <button className="demo-button" onClick={onDemo}>
-            <span /> Explorar demo
-          </button>
+          {showDemo && (
+            <button className="demo-button" onClick={onDemo}>
+              <span /> Explorar demo
+            </button>
+          )}
           {user ? (
             <div className="account-menu">
               <button
@@ -74,10 +72,12 @@ export default function Header({ user, page, navigate, onDemo, logout }) {
                     <Icon name="user" />
                     Meu cadastro
                   </button>
-                  <button onClick={onDemo}>
-                    <Icon name="users" />
-                    Trocar perfil da demo
-                  </button>
+                  {showDemo && (
+                    <button onClick={onDemo}>
+                      <Icon name="users" />
+                      Trocar perfil da demo
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setMenu(false);

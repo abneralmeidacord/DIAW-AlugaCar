@@ -59,9 +59,6 @@ export default function HomePage({
             </p>
           </div>
         </div>
-        <span className="hero-pagination">
-          <b>01</b> / 03
-        </span>
       </section>
       <form
         className="hero-search"
@@ -145,7 +142,7 @@ export default function HomePage({
           ))}
         </div>
       </section>
-      <section className="journey-section" id="how-it-works">
+      <section className="journey-section">
         <div className="journey-intro">
           <p className="eyebrow">MENOS BUROCRACIA. MAIS CAMINHO.</p>
           <h2>
