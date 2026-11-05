@@ -2,10 +2,24 @@ package br.com.alugacar.entity;
 
 import br.com.alugacar.exception.EstadoInvalidoException;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.OrderBy;
+import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pedidos_aluguel")
@@ -115,9 +129,6 @@ public class PedidoAluguel {
     public List<AvaliacaoFinanceira> getAvaliacoes() {
         return avaliacoes;
     }
-    public void setAvaliacoes(List<AvaliacaoFinanceira> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }
     public ContratoAluguel getContrato() {
         return contrato;
     }
@@ -126,9 +137,6 @@ public class PedidoAluguel {
     }
     public List<EventoPedido> getEventos() {
         return eventos;
-    }
-    public void setEventos(List<EventoPedido> eventos) {
-        this.eventos = eventos;
     }
     public void alterarPedido(LocalDate inicio, LocalDate fim) {
         if (!"PENDENTE".equals(status) || !avaliacoes.isEmpty()) throw new EstadoInvalidoException("Somente pedidos não avaliados podem ser alterados.");

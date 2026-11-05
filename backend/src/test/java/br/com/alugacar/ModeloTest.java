@@ -1,13 +1,24 @@
 package br.com.alugacar;
 
-import br.com.alugacar.entity.*;
+import br.com.alugacar.entity.Automovel;
+import br.com.alugacar.entity.AvaliacaoFinanceira;
+import br.com.alugacar.entity.Banco;
+import br.com.alugacar.entity.Cliente;
+import br.com.alugacar.entity.ContratoAluguel;
+import br.com.alugacar.entity.ContratoCredito;
+import br.com.alugacar.entity.Empresa;
+import br.com.alugacar.entity.PedidoAluguel;
+import br.com.alugacar.entity.Usuario;
+import br.com.alugacar.entity.VinculoEmpregaticio;
 import br.com.alugacar.model.PedidoView;
 import br.com.alugacar.exception.EstadoInvalidoException;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ModeloTest {
     @Test

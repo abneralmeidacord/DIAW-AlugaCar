@@ -1,16 +1,38 @@
 package br.com.alugacar.service;
 
-import br.com.alugacar.model.*;
+import br.com.alugacar.model.AvaliacaoRequest;
+import br.com.alugacar.model.ContratoRequest;
+import br.com.alugacar.model.CreditoRequest;
+import br.com.alugacar.model.PedidoRequest;
+import br.com.alugacar.model.PedidoView;
+import br.com.alugacar.model.PeriodoRequest;
+import br.com.alugacar.model.UsuarioView;
 import br.com.alugacar.exception.ApiException;
-import br.com.alugacar.entity.*;
+import br.com.alugacar.entity.Agente;
+import br.com.alugacar.entity.Automovel;
+import br.com.alugacar.entity.AvaliacaoFinanceira;
+import br.com.alugacar.entity.Banco;
+import br.com.alugacar.entity.Cliente;
+import br.com.alugacar.entity.ContratoAluguel;
+import br.com.alugacar.entity.ContratoCredito;
+import br.com.alugacar.entity.EventoPedido;
+import br.com.alugacar.entity.PedidoAluguel;
+import br.com.alugacar.entity.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.Hibernate;
-import java.time.*;
-import java.util.*;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 @Transactional

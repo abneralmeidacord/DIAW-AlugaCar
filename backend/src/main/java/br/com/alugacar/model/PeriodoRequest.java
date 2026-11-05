@@ -1,8 +1,5 @@
 package br.com.alugacar.model;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import java.util.*;
-import java.math.BigDecimal;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 public record PeriodoRequest(
     @NotNull LocalDate start,

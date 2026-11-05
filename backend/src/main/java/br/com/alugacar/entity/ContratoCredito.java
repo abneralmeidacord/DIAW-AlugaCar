@@ -1,9 +1,18 @@
 package br.com.alugacar.entity;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.util.UUID;
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contratos_credito")
@@ -28,9 +37,6 @@ public class ContratoCredito {
     @Column(nullable = false, precision = 16, scale = 2)
     private BigDecimal rendaConsiderada;
     public ContratoCredito() {}
-    public ContratoAluguel getAluguel() {
-        return aluguel;
-    }
     public void setAluguel(ContratoAluguel aluguel) {
         this.aluguel = aluguel;
     }
@@ -51,9 +57,6 @@ public class ContratoCredito {
     }
     public void setValor(BigDecimal valor) {
         this.valor = valor;
-    }
-    public LocalDate getDataConcessao() {
-        return dataConcessao;
     }
     public void setDataConcessao(LocalDate dataConcessao) {
         this.dataConcessao = dataConcessao;

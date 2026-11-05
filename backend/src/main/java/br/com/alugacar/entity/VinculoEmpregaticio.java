@@ -1,9 +1,15 @@
 package br.com.alugacar.entity;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.util.UUID;
 import java.math.BigDecimal;
-import java.time.*;
 
 @Entity
 @Table(name = "vinculos_empregaticios")

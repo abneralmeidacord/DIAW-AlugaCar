@@ -1,10 +1,23 @@
 package br.com.alugacar.controller;
-import br.com.alugacar.model.*;
+import br.com.alugacar.model.AvaliacaoRequest;
+import br.com.alugacar.model.ContratoRequest;
+import br.com.alugacar.model.CreditoRequest;
+import br.com.alugacar.model.PedidoRequest;
+import br.com.alugacar.model.PedidoView;
+import br.com.alugacar.model.PeriodoRequest;
 import br.com.alugacar.service.PedidoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import java.util.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/pedidos")

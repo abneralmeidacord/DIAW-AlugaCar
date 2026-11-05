@@ -1,8 +1,17 @@
 package br.com.alugacar.service;
 
-import br.com.alugacar.model.*;
+import br.com.alugacar.model.CadastroRequest;
+import br.com.alugacar.model.PerfilRequest;
+import br.com.alugacar.model.UsuarioView;
+import br.com.alugacar.model.VinculoRequest;
 import br.com.alugacar.exception.ApiException;
-import br.com.alugacar.entity.*;
+import br.com.alugacar.entity.Agente;
+import br.com.alugacar.entity.Banco;
+import br.com.alugacar.entity.Cliente;
+import br.com.alugacar.entity.Empresa;
+import br.com.alugacar.entity.PedidoAluguel;
+import br.com.alugacar.entity.Usuario;
+import br.com.alugacar.entity.VinculoEmpregaticio;
 import jakarta.persistence.EntityManager;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +23,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.Hibernate;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 @Transactional

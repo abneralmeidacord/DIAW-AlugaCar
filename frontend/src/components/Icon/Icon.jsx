@@ -1,5 +1,4 @@
 import React from 'react';
-import './Icon.css';
 
 export default function Icon({ name = 'arrow', size = 20, ...props }) {
   const paths = {
@@ -15,12 +14,10 @@ export default function Icon({ name = 'arrow', size = 20, ...props }) {
     close: 'm6 6 12 12M6 18 18 6',
     heart: 'M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1c-5 5 3 11 8 16 5-5 13-11 8-16Z',
     car: 'm5 5-3 8v7h3v-3h14v3h3v-7l-3-8H5ZM2 12h20M6 14h1m10 0h1',
-    gear: 'M7 4v16m10-16v7H7m5 0v9M4 4h6m4 0h6M4 20h6m-1 0h6',
     fuel: 'M4 3h9v18H4V3Zm0 7h9m3-5 3 3v9a2 2 0 0 0 4 0V9l-3-3',
     shield: 'M12 2 3 6v6c0 6 9 10 9 10s9-4 9-10V6l-9-4Zm-4 9 3 3 5-6',
     clock: 'M12 8v5l3 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0',
     file: 'M5 2h10l5 5v15H5V2Zm10 0v6h5M9 12h7m-7 4h7',
-    filter: 'M4 7h16M4 17h16M8 4v6m8 4v6',
     logout: 'M10 3H3v18h7m5-14 5 5-5 5M8 12h12',
     chevron: 'm6 9 6 6 6-6',
     menu: 'M3 6h18M3 12h18M3 18h18',

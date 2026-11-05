@@ -2,10 +2,18 @@ package br.com.alugacar.entity;
 
 import br.com.alugacar.exception.EstadoInvalidoException;
 
-import jakarta.persistence.*;
-import java.util.*;
-import java.math.BigDecimal;
-import java.time.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.util.UUID;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contratos_aluguel")
@@ -61,14 +69,8 @@ public class ContratoAluguel {
     public LocalDateTime getAceitoEm() {
         return aceitoEm;
     }
-    public void setAceitoEm(LocalDateTime aceitoEm) {
-        this.aceitoEm = aceitoEm;
-    }
     public LocalDateTime getIniciadoEm() {
         return iniciadoEm;
-    }
-    public void setIniciadoEm(LocalDateTime iniciadoEm) {
-        this.iniciadoEm = iniciadoEm;
     }
     public String getStatus() {
         return status;

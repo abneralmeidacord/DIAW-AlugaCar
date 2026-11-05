@@ -1,9 +1,15 @@
 package br.com.alugacar.entity;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import java.util.ArrayList;
+import java.util.List;
 import java.math.BigDecimal;
-import java.time.*;
 
 @Entity
 @Table(name = "clientes")
@@ -46,9 +52,6 @@ public class Cliente extends Usuario {
     }
     public List<VinculoEmpregaticio> getVinculos() {
         return vinculos;
-    }
-    public void setVinculos(List<VinculoEmpregaticio> vinculos) {
-        this.vinculos = vinculos;
     }
     @Override public String getPerfil() { return "cliente"; }
     @Override public String getNomeExibicao() { return nome; }

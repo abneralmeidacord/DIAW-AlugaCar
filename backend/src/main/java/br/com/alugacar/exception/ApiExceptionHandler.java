@@ -1,7 +1,8 @@
 package br.com.alugacar.exception;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import jakarta.persistence.LockTimeoutException;
 import jakarta.persistence.PessimisticLockException;
 import org.hibernate.exception.ConstraintViolationException;

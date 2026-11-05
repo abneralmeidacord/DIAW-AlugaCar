@@ -1,9 +1,8 @@
 package br.com.alugacar.entity;
 
-import jakarta.persistence.*;
-import java.util.*;
-import java.math.BigDecimal;
-import java.time.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "agentes")

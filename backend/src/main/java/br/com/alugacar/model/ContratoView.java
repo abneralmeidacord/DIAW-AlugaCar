@@ -1,9 +1,5 @@
 package br.com.alugacar.model;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import java.util.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.UUID;
 public record ContratoView(
     String id,
     UUID uuid,

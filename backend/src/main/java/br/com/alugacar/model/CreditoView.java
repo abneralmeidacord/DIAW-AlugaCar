@@ -1,9 +1,6 @@
 package br.com.alugacar.model;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import java.util.*;
+import java.util.UUID;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 public record CreditoView(
     boolean requested,
     UUID bankOrg,

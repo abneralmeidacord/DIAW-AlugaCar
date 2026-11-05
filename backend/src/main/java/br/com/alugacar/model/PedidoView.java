@@ -1,5 +1,11 @@
 package br.com.alugacar.model;
-import br.com.alugacar.entity.*;
+import br.com.alugacar.entity.AvaliacaoFinanceira;
+import br.com.alugacar.entity.Banco;
+import br.com.alugacar.entity.Cliente;
+import br.com.alugacar.entity.ContratoAluguel;
+import br.com.alugacar.entity.ContratoCredito;
+import br.com.alugacar.entity.PedidoAluguel;
+import br.com.alugacar.entity.Usuario;
 import java.util.List;
 import java.util.UUID;
 import java.math.BigDecimal;

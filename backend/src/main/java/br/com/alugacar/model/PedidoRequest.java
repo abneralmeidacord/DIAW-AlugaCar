@@ -1,8 +1,6 @@
 package br.com.alugacar.model;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import java.util.*;
-import java.math.BigDecimal;
+import jakarta.validation.constraints.NotNull;
+import java.util.UUID;
 import java.time.LocalDate;
 public record PedidoRequest(
     @NotNull UUID carId,
