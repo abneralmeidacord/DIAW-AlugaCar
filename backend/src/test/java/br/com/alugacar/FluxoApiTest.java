@@ -11,13 +11,17 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.convention.TestBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.ObjectMapper;
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +39,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 @Transactional
 class FluxoApiTest {
+    // A data de negócio ainda é dia 6 em São Paulo, embora em UTC já seja dia 7.
+    private static final LocalDate HOJE = LocalDate.of(2026, 11, 6);
+
+    @TestBean(methodName = "relogioFixo", enforceOverride = true)
+    Clock clock;
+
+    static Clock relogioFixo() {
+        return Clock.fixed(Instant.parse("2026-11-07T02:05:00Z"), ZoneOffset.UTC);
+    }
+
     @Autowired
     MockMvc mvc;
     @Autowired
@@ -97,8 +111,8 @@ class FluxoApiTest {
                 .createQuery("select a from Automovel a where a.codigo = 'porsche'", Automovel.class)
                 .getSingleResult();
         Map<String, Object> dados = new HashMap<>(Map.of(
-                "carId", car.getId(), "start", LocalDate.now().plusDays(3).toString(),
-                "end", LocalDate.now().plusDays(5).toString(), "credit", credit));
+                "carId", car.getId(), "start", HOJE.plusDays(3).toString(),
+                "end", HOJE.plusDays(5).toString(), "credit", credit));
         if (credit) {
             dados.put("bankId", buscarUsuario("banco@alugacar.demo").getId());
         }
@@ -212,7 +226,7 @@ class FluxoApiTest {
         send(company, post("/api/pedidos/" + id + "/contrato"), Map.of("terms", "Inválido"))
                 .andExpect(status().isConflict());
         send(client, put("/api/pedidos/" + id),
-                Map.of("start", LocalDate.now().plusDays(4).toString(), "end", LocalDate.now().plusDays(6).toString()))
+                Map.of("start", HOJE.plusDays(4).toString(), "end", HOJE.plusDays(6).toString()))
                 .andExpect(status().isConflict());
         send(client, post("/api/pedidos/" + id + "/cancelar"), null).andExpect(status().isConflict());
     }
@@ -222,10 +236,10 @@ class FluxoApiTest {
         var client = login("cliente@alugacar.demo");
         String id = order(client, false);
         send(client, put("/api/pedidos/" + id),
-                Map.of("start", LocalDate.now().minusDays(1).toString(), "end", LocalDate.now().plusDays(1).toString()))
+                Map.of("start", HOJE.minusDays(1).toString(), "end", HOJE.plusDays(1).toString()))
                 .andExpect(status().isBadRequest());
         send(login("empresa@alugacar.demo"), put("/api/pedidos/" + id),
-                Map.of("start", LocalDate.now().plusDays(4).toString(), "end", LocalDate.now().plusDays(6).toString()))
+                Map.of("start", HOJE.plusDays(4).toString(), "end", HOJE.plusDays(6).toString()))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.status").value("PENDENTE"));
         send(client, post("/api/pedidos/" + id + "/cancelar"), null).andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("CANCELADO"));
@@ -296,8 +310,8 @@ class FluxoApiTest {
         String carId = JsonPath.read(resultado.getResponse().getContentAsString(), "$[0].id");
         var pedido = send(client, post("/api/pedidos"), Map.of(
                 "carId", carId,
-                "start", LocalDate.now().plusDays(3).toString(),
-                "end", LocalDate.now().plusDays(5).toString(),
+                "start", HOJE.plusDays(3).toString(),
+                "end", HOJE.plusDays(5).toString(),
                 "credit", false,
                 "location", "Betim, MG"))
                 .andExpect(status().isCreated())
