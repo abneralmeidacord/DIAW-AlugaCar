@@ -41,6 +41,7 @@
 
 ## 🔗 Links Úteis
 
+- [Telas e protótipo visual no Figma](https://www.figma.com/design/FvQUvKqSOaABwbrWrFQXDf/AlugaCar-%E2%80%94-Telas-e-prot%C3%B3tipo-visual?node-id=0-1&t=OVnuLhtvfqBWH4wT-1)
 - [Documentação do back-end, API e regras de negócio](backend/README.md)
 - [Guia de apresentação do front-end](frontend/APRESENTACAO.md)
 - [Histórias de usuário](docs/05-historias-do-usuario.md)
